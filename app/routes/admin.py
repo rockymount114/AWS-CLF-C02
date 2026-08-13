@@ -220,6 +220,7 @@ def import_md():
     from app.utils.parser import parse_markdown_qa
     if request.method == 'POST':
         file = request.files.get('file')
+        default_domain = request.form.get('default_domain', 'Cloud Technology & Service').strip()
         if file and file.filename:
             import os
             path = os.path.join('/tmp', 'upload.md')
@@ -229,12 +230,21 @@ def import_md():
             imported_count = 0
             for item in parsed:
                 q_text = item['question_text'][:2000]
-                correct_text = item['correct_text'].lower()
-                q_type = 'multi' if ('select' in q_text.lower() or 'select' in correct_text or '\n-' in item['correct_text']) else 'single'
+                q_domain = item.get('domain')
+                if not q_domain or q_domain == 'Imported' or q_domain == 'General':
+                    q_domain = default_domain
+                    
+                q_type = item.get('q_type')
+                if not q_type:
+                    correct_text = item['correct_text'].lower()
+                    q_type = 'multi' if ('select' in q_text.lower() or 'select' in correct_text or '\n-' in item['correct_text']) else 'single'
+                
+                difficulty = item.get('difficulty', 'medium')
                 
                 q = Question(
                     question_text=q_text,
-                    domain='Imported',
+                    domain=q_domain,
+                    difficulty=difficulty,
                     q_type=q_type,
                     explanation_correct=item['explanation_correct'][:2000],
                     explanation_wrong=item['explanation_wrong'][:2000],
@@ -244,7 +254,7 @@ def import_md():
                 db.session.flush()
                 
                 labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-                for idx, opt_text in enumerate(item['options_raw'][:5]):
+                for idx, opt_text in enumerate(item['options_raw'][:6]):
                     opt_clean = opt_text.strip()
                     if not opt_clean or opt_clean in ['--', '-', '---'] or set(opt_clean) <= {'-', ' '}:
                         continue
@@ -254,7 +264,7 @@ def import_md():
                     is_correct = any(
                         opt_low == cl or (len(opt_low) > 15 and opt_low in cl) or (len(cl) > 15 and cl in opt_low)
                         for cl in corr_lines
-                    ) if corr_lines else (opt_low in correct_text)
+                    ) if corr_lines else (opt_low in item['correct_text'].lower())
                     db.session.add(Option(
                         question_id=q.id,
                         option_text=opt_clean[:500],
@@ -269,7 +279,69 @@ def import_md():
         else:
             flash('Please upload a valid .md file.', 'danger')
             
-    return render_template('admin/import.html')
+    standard_domains = ['Cloud Concepts', 'Security & Compliance', 'Cloud Technology & Service', 'Billing, Pricing & Support']
+    return render_template('admin/import.html', domains=standard_domains)
+
+
+@admin_bp.route('/import/template')
+@login_required
+@admin_required
+def download_import_template():
+    template_content = """# AWS Practice Questions Import Template
+
+### 1. Hardware Security Module for Compliance
+**Domain:** `Security & Compliance` | **Type:** `Single Choice` | **Difficulty:** `Medium`
+
+**Question:**
+> Due to strict compliance mandates, an enterprise must use dedicated hardware security modules in the cloud for encryption key storage. Which AWS service fulfills this requirement?
+
+**Options:**
+- **[A]** AWS Key Management Service (AWS KMS)
+- **[B]** AWS CloudHSM
+- **[C]** AWS Secrets Manager
+- **[D]** AWS Certificate Manager
+
+**Correct Answer:**
+- **[B] AWS CloudHSM**
+
+**Why Correct:**
+AWS CloudHSM provides dedicated, single-tenant FIPS 140-2 Level 3 hardware security modules directly in your VPC.
+
+**Why Others Are Incorrect:**
+- **AWS KMS:** Multi-tenant shared infrastructure managed by AWS.
+- **AWS Secrets Manager:** Manages and rotates credentials/passwords.
+- **AWS Certificate Manager:** Deploys SSL/TLS certificates.
+
+---
+
+### 2. Services with Default Encryption (Select Two)
+**Domain:** `Security & Compliance` | **Type:** `Multiple Choice (Select Two)` | **Difficulty:** `Medium`
+
+**Question:**
+> Which of the following AWS storage services have encryption at rest enabled automatically by default? (Select two)
+
+**Options:**
+- **[A]** Amazon Elastic Block Store (Amazon EBS)
+- **[B]** AWS Storage Gateway
+- **[C]** Amazon Elastic File System (Amazon EFS)
+- **[D]** Amazon S3 Glacier
+
+**Correct Answer:**
+- **[B] AWS Storage Gateway**
+- **[D] Amazon S3 Glacier**
+
+**Why Correct:**
+All data written to AWS Storage Gateway and Amazon S3 Glacier is automatically encrypted with AES-256 at rest.
+
+**Why Others Are Incorrect:**
+EBS and EFS offer encryption, but it must be enabled upon creation or via account-level defaults.
+"""
+    return Response(
+        template_content,
+        mimetype="text/markdown",
+        headers={"Content-disposition": "attachment; filename=aws_questions_import_template.md"}
+    )
+
 
 
 @admin_bp.route('/export')

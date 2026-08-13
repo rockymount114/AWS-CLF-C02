@@ -16,16 +16,16 @@ def parse_markdown_qa(file_path):
             body = blocks[i+2]
             
             # Domain
-            d_match = re.search(r'\*\*Domain:\*\*\s*`?([^`\n|]+)`?', body)
-            domain = d_match.group(1).strip() if d_match else 'Cloud Technology & Service'
+            d_match = re.search(r'\*\*Domain:\*\*\s*(?:`([^`]+)`|([^\n|\r]+))', body)
+            domain = (d_match.group(1) or d_match.group(2)).strip() if d_match else 'Cloud Technology & Service'
             
             # Type
-            t_match = re.search(r'\*\*Type:\*\*\s*`?([^`\n|]+)`?', body)
-            type_raw = t_match.group(1).strip().lower() if t_match else ''
+            t_match = re.search(r'\*\*Type:\*\*\s*(?:`([^`]+)`|([^\n|\r]+))', body)
+            type_raw = (t_match.group(1) or t_match.group(2)).strip().lower() if t_match else ''
             
             # Difficulty
-            diff_match = re.search(r'\*\*Difficulty:\*\*\s*`?([^`\n|]+)`?', body)
-            difficulty = diff_match.group(1).strip().lower() if diff_match else 'medium'
+            diff_match = re.search(r'\*\*Difficulty:\*\*\s*(?:`([^`]+)`|([^\n|\r\*]+))', body)
+            difficulty = (diff_match.group(1) or diff_match.group(2)).strip().lower() if diff_match else 'medium'
             
             # Question text
             q_match = re.search(r'\*\*Question:\*\*\s*(?:>\s*)?(.*?)(?=\n\*\*Options:\*\*|\n-\s*\[?[A-E]\]?|\n\*\*Correct Answer:)', body, re.S)
