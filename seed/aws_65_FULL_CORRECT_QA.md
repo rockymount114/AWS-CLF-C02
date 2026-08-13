@@ -1,6 +1,4 @@
-# AWS Cloud Practitioner - Full 65+ Questions & Answers (From Your Chat History)
-> All questions extracted from your screenshots and text history, with correct answers and why.
-
+# AWS Cloud Practitioner - Full 65+ Questions & Answers
 ---
 
 ### 1. Hardware Device for Data Encryption for Compliance
