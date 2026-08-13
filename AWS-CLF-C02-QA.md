@@ -601,115 +601,255 @@
 
 ### 48-65. Core Repeats from Earlier Photos (For Completeness)
 
+
 ### 48. Deploy Identical Resources Across All Regions/Accounts Using Templates + Estimate Costs
-**Correct:** AWS CloudFormation (StackSets) - See Q1
+**Question:** A Cloud Practitioner would like to deploy identical resources across all AWS regions and accounts using templates while estimating costs. Which AWS service can assist with this task?
+
+- AWS Directory Service for Microsoft Active Directory
+- Amazon Lightsail
+- AWS CloudFormation
+- AWS CodeDeploy
+
+**Correct Answer:** AWS CloudFormation
+**Why Correct:** CloudFormation uses templates (JSON/YAML) and CloudFormation StackSets to deploy identical resources across all regions and accounts in one operation. It also has built-in cost estimation (via Pricing Calculator integration) for templates.
+**Why Wrong:** Directory Service = Managed AD. Lightsail = simple VPS bundle. CodeDeploy = deploys application code to EC2/on-prem, not infrastructure templates.
 
 ### 49. Run Docker Containers With Access to Underlying Servers
-**Correct:** Amazon ECS EC2 Launch Type - See Q2
+**Question:** A startup runs proprietary application on docker containers. As a Cloud Practitioner, which AWS service would you recommend so that startup can run containers and still have access to underlying servers?
 
-### 50. Lowest Cost Long-Term EC2 Never Interrupted
-**Correct:** EC2 Reserved Instance / Savings Plan - See Q3
+- Amazon Elastic Container Service (Amazon ECS) - EC2 Launch Type
+- AWS Fargate
+- Amazon Elastic Container Registry (ECR)
+- AWS Lambda
 
-### 51. Provision Same Infra Across Multiple Accounts and Regions
-**Correct:** AWS CloudFormation StackSets - See Q4
+**Correct Answer:** Amazon Elastic Container Service (Amazon ECS) - EC2 Launch Type
+**Why Correct:** ECS with EC2 launch type lets you run Docker containers while you still manage and have SSH access to the underlying EC2 instances.
+**Why Wrong:** Fargate = serverless containers, no server access. ECR = only Docker registry to store images. Lambda = serverless functions.
+
+### 50. Lowest Cost Long-Term EC2 With No Interruption
+**Question:** A startup wants to provision an EC2 instance for the lowest possible cost for a long-term duration but needs to make sure that the instance would never be interrupted. Which option?
+
+- EC2 Spot Instance
+- EC2 On-Demand Instance
+- EC2 Reserved Instance (RI) / Savings Plan
+- EC2 Dedicated Host
+
+**Correct Answer:** EC2 Reserved Instance (RI) / Savings Plan (1-year or 3-year)
+**Why Correct:** Reserved Instances give up to 72% discount vs On-Demand for long-term and are never interrupted. Savings Plans are new model of same.
+**Why Wrong:** Spot = cheapest but CAN be interrupted with 2-min notice. On-Demand = no interruption but expensive long-term. Dedicated Host = most expensive for compliance/licensing.
+
+### 51. Provision Same AWS Infrastructure Across Multiple AWS Accounts and Regions
+**Question:** Which AWS service will you use to provision the same AWS infrastructure across multiple AWS accounts and regions?
+
+- AWS OpsWorks
+- AWS Systems Manager
+- AWS CodeDeploy
+- AWS CloudFormation
+
+**Correct Answer:** AWS CloudFormation (with StackSets)
+**Why Correct:** CloudFormation StackSets is designed to provision same stack from one template across multiple accounts and regions.
+**Why Wrong:** OpsWorks = Chef/Puppet config management. Systems Manager = manage EC2 fleets. CodeDeploy = deploy application code.
 
 ### 52. NOT a Feature of Amazon Inspector
-**Correct:** Track configuration changes (That's Config) - See Q5
+**Question:** Which of the following options is NOT a feature of Amazon Inspector?
 
-### 53. Account Activity Governance Compliance Auditing
-**Correct:** AWS CloudTrail - See Q6
+- Track configuration changes
+- Automate security assessments
+- Inspect running OS against known vulnerabilities
+- Analyze against unintended network accessibility
+
+**Correct Answer:** Track configuration changes
+**Why Correct:** Inspector DOES: Automate security assessments, Inspect running OS for known vulnerabilities, Analyze against unintended network accessibility. Tracking configuration changes is AWS Config.
+**Why Wrong Options Are Actually Features of Inspector:** The other three ARE features of Inspector.
+
+### 53. Account Activity Meets Governance, Compliance, Auditing
+**Question:** A financial services company wants to ensure that its AWS account activity meets governance, compliance and auditing norms. Which service would you recommend?
+
+- AWS Trusted Advisor
+- AWS Config
+- AWS CloudTrail
+- Amazon CloudWatch
+
+**Correct Answer:** AWS CloudTrail
+**Why Correct:** CloudTrail records all API calls/account activity - who did what, when, from where. Perfect for governance, compliance, auditing trail.
+**Why Wrong:** Config = tracks resource configuration changes. Trusted Advisor = best practice checks. CloudWatch = performance monitoring.
 
 ### 54. Always Free to Use (Select Two)
-**Correct:** IAM + Auto Scaling - See Q7
+**Question:** Which AWS services are always free to use (Select two)?
 
-### 55. RI Sharing Across Units Most Cost-Optimal
-**Correct:** AWS Organizations - See Q8
+- AWS Identity and Access Management (AWS IAM)
+- AWS Auto Scaling
+- Amazon DynamoDB
+- Amazon EC2
+- Amazon S3
 
-### 56. Security Assessment Without Prior Approval
-**Correct:** Penetration Testing - See Q9
+**Correct Answer:**
+- AWS Identity and Access Management (AWS IAM)
+- AWS Auto Scaling
 
-### 57. Operational Insights to Identify Issues Impacting Apps
-**Correct:** AWS Systems Manager - See Q10
+**Why Correct:** IAM users/groups/roles/policies always free. Auto Scaling service itself free (pay only underlying resources it launches).
+**Why Wrong:** DynamoDB/EC2/S3 have Free Tier limits but not always free - you pay after limits (EC2 Free Tier only 12 months).
 
-### 58. Quickly Deploy Popular Technology
-**Correct:** AWS Partner Solutions (Quick Starts) - See Q11
+### 55. Reserved EC2 Sharing Across Multiple Units - Most Cost-Optimal
+**Question:** A company uses reserved EC2 instances across multiple units with each unit having its own AWS account. However, some units under-utilize their reserved instances while other units need more reserved instances. As a Cloud Practitioner, which would you recommend as most cost-optimal solution?
 
-### 59. Linux EC2 30 Seconds Charge Duration
-**Correct:** 60 seconds - See Q12
+- Use AWS Systems Manager to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+- Use AWS Cost Explorer to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+- Use AWS Organizations to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+- Use AWS Trusted Advisor to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
 
-### 60. Thumbnails Rarely Used Immediately Accessible Regenerable - Most Cost-Effective S3
-**Correct:** S3 One Zone-IA - See Q13
+**Correct Answer:** Use AWS Organizations to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+**Why Correct:** Organizations with Consolidated Billing automatically shares unused RI discount across member accounts in org.
+**Why Wrong:** Systems Manager/Cost Explorer/Trusted Advisor don't manage accounts or enable RI discount sharing.
 
-### 61. RDS Read Replica Primary Benefit
-**Correct:** Improves database scalability - See Q14
+### 56. Security Assessment Without Prior Approval From AWS
+**Question:** A cyber-security agency uses AWS Cloud and wants to carry out security assessments on its own AWS infrastructure without any prior approval from AWS. Which describes/facilitates this practice?
 
-### 62. Advantages of AWS Cloud (Select Two)
-**Correct:** Increase speed and agility + Stop guessing capacity - See Q10/15
+- Network Stress Testing
+- Amazon Inspector
+- AWS Secrets Manager
+- Penetration Testing
 
-### 63. CAF Platform Perspective Stakeholders (Select Two)
-**Correct:** Engineer + CTO (or CTO + CIO) - See Q16/19
+**Correct Answer:** Penetration Testing
+**Why Correct:** AWS allows Penetration Testing on your own infrastructure without prior approval (policy changed). Inspector is automated vuln scanner tool but policy term "without prior approval" specifically refers to Pen Testing.
+**Why Wrong:** Network Stress Testing / DoS testing NOT allowed without prior approval - prohibited. Secrets Manager = stores secrets.
 
-### 64. Best Practices AWS Organizations (Select Two)
-**Correct:** Create accounts per department + Restrict with SCPs - See Q17/21
+### 57. Operational Insights to Quickly Identify Issues Impacting Applications
+**Question:** A Cloud Practitioner would like to get operational insights of its resources to quickly identify any issues that might impact applications using those resources. Which AWS service can help?
 
-### 65. Marketplace Facilitates Use-Cases (Select Two)
-**Correct:** Buy software bundled in AMIs + Sell SaaS solutions - See Q18
+- AWS Health Dashboard - Your Account Health
+- AWS Trusted Advisor
+- AWS Systems Manager
+- Amazon Inspector
 
-### 66. Organizations Benefits (Select Two) - Bonus
-**Correct:** Volume discounts aggregated + Share RIs - See Q19
+**Correct Answer:** AWS Systems Manager
+**Why Correct:** Systems Manager centralizes operational data from multiple services, resource groups, API activity, config changes, notifications, operational alerts, inventory, patch compliance. Central place for visibility and control.
+**Why Wrong:** Health Dashboard Account Health = alerts when AWS itself has events affecting you. Trusted Advisor = cost/perf/security best practices. Inspector = security assessment service.
 
----
+### 58. Quickly Deploy a Popular Technology on AWS
+**Question:** A start-up would like to quickly deploy a popular technology on AWS. As a Cloud Practitioner, which AWS tool would you use?
 
-## Final Cheat Sheet for Exam
+- AWS Forums
+- AWS Whitepapers
+- AWS CodeDeploy
+- AWS Partner Solutions (formerly Quick Starts)
 
-- **Hardware encryption compliance:** CloudHSM (single-tenant dedicated)
-- **AMI:** Regional, must be in same region, copy to use elsewhere
-- **Chef/Puppet:** OpsWorks
-- **Auto encryption ON:** Storage Gateway, S3 Glacier, now S3 by default
-- **Active-Active NoSQL cross-region:** DynamoDB Global Tables
-- **Hybrid logs EC2 + on-prem:** CloudWatch Logs + Unified Agent
-- **Compute Optimizer supports:** EC2, ASG, EBS, Lambda, ECS Fargate - NOT EFS
-- **Discover sensitive data S3:** Macie
-- **Personalized service health:** Your Account Health Dashboard / Personal Health Dashboard
-- **General service health RSS:** Service Health Dashboard
-- **Advantages of Cloud:** Trade CapEx for OpEx, economies of scale, stop guessing capacity, speed & agility, go global, stop spending on data centers
-- **Serverless:** Lambda, Fargate (and EventBridge, Step Functions, etc) - NOT Beanstalk/EC2
-- **Under-utilized EC2 off-shelf:** Trusted Advisor (Low Utilization check) + Compute Optimizer / Cost Explorer Rightsizing
-- **Microservices perf debug:** X-Ray (distributed tracing)
-- **Speech:** Transcribe = Speech->Text, Polly = Text->Speech, Translate = Text->Text
-- **USB MFA:** U2F security key (YubiKey)
-- **No physical MFA:** Virtual MFA app
-- **Cost optimization EC2:** RIs/Savings Plans + Auto Scaling + Compute Optimizer
-- **Recommendation engine key-value ms:** DynamoDB
-- **CAF Platform stakeholders:** CTO, CIO, Engineers, Architects
-- **Container serverless:** Fargate
-- **Organizations best practices:** Accounts per dept/team/workload/env, SCPs, Tags for billing, CloudTrail everywhere, Automate creation
-- **Deployment models:** Cloud, Private, Hybrid
-- **Cheapest archival S3 highest latency:** Glacier Deep Archive (12hr/48hr retrieval)
-- **Hundreds EC2 simultaneous append file:** EFS (NFS), not S3/EBS/Instance Store
-- **Schemaless:** DynamoDB
-- **Central manage multi-account SSO:** IAM Identity Center (SSO)
-- **Migration consulting firm:** APN Consulting Partner
-- **Unattached EBS:** Trusted Advisor
-- **Forecast costs:** Cost Explorer + Budgets
-- **Shared Responsibility:** AWS OF Cloud, Customer IN Cloud. S3 abstracted = AWS manages infra/OS/platform. EC2 = customer manages guest OS.
-- **Block storage:** EBS + Instance Store
-- **Long-term 10yr compliance:** Glacier Deep Archive
-- **Two VPCs privately:** VPC Peering
-- **ELB benefits:** Fault tolerance + High Availability
-- **Prohibited uses:** Acceptable Use Policy (AUP)
-- **Scheduled serverless cron:** EventBridge + Lambda
-- **Bill by department simplest:** Cost Allocation Tags; best practice: separate accounts via Organizations
-- **Weighted 80/20 blue/green:** Weighted routing
-- **IaC automation pillar:** Operational Excellence
-- **On-prem vs AWS cost compare:** Pricing Calculator / TCO Calculator / Migration Evaluator
-- **Low-latency gameplay various locations:** Edge Locations (global cache via CloudFront) OR Local Zones (run compute close to metros) - read wording
-- **Deploy code to EC2 + on-prem:** CodeDeploy
-- **RDS Multi-AZ:** Enhances availability (not read perf, not cost, not regional DR)
-- **Add/remove EC2 for demand:** Auto Scaling
-- **SSH private EC2 without 22/bastion:** Session Manager
-- **Same infra across accounts/regions templates cost:** CloudFormation StackSets
-- **No interruption lowest long-term cost:** Reserved Instance
-- **Always free:** IAM + Auto Scaling
-- **RI sharing cost-optimal:** Organizations
-- **PenTest without approval:** Penetration Testing allowed, Network Stress Testing NOT allowed
+**Correct Answer:** AWS Partner Solutions (formerly Quick Starts)
+**Why Correct:** Partner Solutions are automated reference deployments built by AWS architects and Partners that deploy popular technologies per best practices in minutes (via CloudFormation), reducing hundreds of manual procedures to few steps.
+**Why Wrong:** Forums = community Q&A. CodeDeploy = deploys your own code to EC2/on-prem. Whitepapers = technical content to read.
+
+### 59. Linux EC2 Per-Second Billing Terminated Within 30 Seconds - Charge Duration
+**Question:** An intern at an IT company provisioned a Linux based On-demand EC2 instance with per-second billing but terminated it within 30 seconds as he wanted to provision another instance type. What is duration for which instance would be charged?
+
+- 30 seconds
+- 60 seconds
+- 300 seconds
+- 600 seconds
+
+**Correct Answer:** 60 seconds
+**Why Correct:** There is one-minute minimum charge for Linux EC2 instances. After first minute, per-second billing. So 30s usage billed for 60s.
+**Why Wrong:** 300s and 600s contradict, 30s ignores minimum.
+
+### 60. Most Cost-Effective S3 Storage for Thumbnails - Rarely Used, Immediately Accessible, Regenerable
+**Question:** A photo sharing web application wants to store thumbnails of user-uploaded images on Amazon S3. Thumbnails are rarely used but need to be immediately accessible from web application. Thumbnails can be regenerated easily if lost. Which is most cost-effective way to store these thumbnails on S3?
+
+- Use Amazon S3 Glacier Flexible Retrieval to store the thumbnails
+- Use Amazon S3 Standard-Infrequent Access (S3 Standard-IA) to store the thumbnails
+- Use Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA) to store the thumbnails
+- Use Amazon S3 Standard to store the thumbnails
+
+**Correct Answer:** Use Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA)
+**Why Correct:** Rarely used = IA class. Immediately accessible = NOT Glacier (minutes-hours). Regenerable = OK with single AZ failure = One Zone-IA stores in 1 AZ, costs 20% less than Standard-IA, same durability/throughput/latency, but less availability which is OK here.
+**Why Wrong:** Standard = frequent access expensive. Standard-IA = works but 20% more expensive than One Zone-IA when multi-AZ not needed. Glacier Flexible Retrieval = archival, retrieval time minutes-hours, not immediate.
+
+### 61. Primary Benefit of RDS Read Replica Configuration
+**Question:** What is the primary benefit of deploying an Amazon RDS database in a Read Replica configuration?
+
+- Read Replica enhances database availability
+- Read Replica protects the database from a regional failure
+- Read Replica reduces database usage costs
+- Read Replica improves database scalability
+
+**Correct Answer:** Read Replica improves database scalability
+**Why Correct:** Read Replicas create read-only copies synchronized with master for improved read performance, horizontal scaling of reads. Can place in different Region closer to users.
+**Why Wrong:** Enhances availability = Multi-AZ (sync standby in different AZ). Regional failure protection = Multi-Region. Reduces costs = increases costs (extra instance).
+
+### 62. Advantages of AWS Cloud (Select TWO) - Repeat Full
+**Question:** Which of the following are the advantages of using the AWS Cloud? (Select TWO)
+
+- Increase speed and agility
+- AWS is responsible for security in the cloud
+- Trade operational expense for capital expense
+- Limited scaling
+- Stop guessing about capacity
+
+**Correct Answer:**
+- Increase speed and agility
+- Stop guessing about capacity (or Trade capital expense for variable expense if worded correctly)
+
+**Why Correct:** From 6 Advantages whitepaper: Increase speed and agility, Stop guessing capacity, Trade CAPEX for OPEX, Economies of scale, Go global in minutes, Stop spending on data centers.
+**Why Wrong:** "AWS is responsible for security IN the cloud" = reversed, AWS OF cloud, customer IN. "Trade operational for capital" = reversed, should be capital for operational. "Limited scaling" = opposite, unlimited/elastic.
+
+### 63. CAF Platform Perspective Stakeholder (Select Two) - Repeat Full
+**Question:** Which option is a common stakeholder role for the AWS Cloud Adoption Framework (AWS CAF) platform perspective? (Select two)
+
+- Engineer
+- Chief Data Officer (CDO)
+- Chief Product Officer (CPO)
+- Chief Information Officer (CIO)
+- Chief Technology Officer (CTO)
+
+**Correct Answer:**
+- Engineer
+- Chief Technology Officer (CTO) (CIO also valid for Platform perspective)
+
+**Why Correct:** CAF groups 6 perspectives: Business, People, Governance, Platform, Security, Operations. Platform perspective focuses on accelerating delivery of cloud workloads via enterprise-grade scalable hybrid cloud. Comprises 7 capabilities. Common stakeholders: CTO, technology leaders, architects, engineers, CIO.
+**Why Wrong:** CPO = Business, CDO = Governance/Data.
+
+### 64. Best Practices When Using AWS Organizations (Select TWO) - Repeat Full
+**Question:** Which of the following are the best practices when using AWS Organizations? (Select TWO)
+
+- Never use tags for billing
+- Create AWS accounts per department
+- Do not use AWS Organizations to automate AWS account creation
+- Disable AWS CloudTrail on several accounts
+- Restrict account privileges using Service Control Policies (SCP)
+
+**Correct Answer:**
+- Create AWS accounts per department
+- Restrict account privileges using Service Control Policies (SCP)
+
+**Why Correct:** Organizations helps centrally govern as you grow. Automate account creation, create groups of accounts per business needs, apply policies, simplify billing single payment, central configs and resource sharing via other services integration. Create accounts per department for regulatory restrictions (via SCPs) for better isolation and per-account service limits. Use SCPs to restrict services/actions allowed as permission guardrails on IAM users/roles.
+**Why Wrong:** Never use tags = SHOULD use tags standards to categorize resources for billing. Disable CloudTrail = SHOULD enable CloudTrail to monitor activity on all accounts for governance/compliance/risk/auditing. Do not automate creation = SHOULD automate via Organizations APIs to create accounts programmatically and policies auto-apply.
+
+### 65. AWS Marketplace Facilitates Which Use-Cases (Select Two) - Repeat Full
+**Question:** AWS Marketplace facilitates which of the following use-cases? (Select two)
+
+- Buy Amazon EC2 Standard Reserved Instances (RI)
+- AWS customer can buy software that has been bundled into customized Amazon Machine Image (AMIs) by the AWS Marketplace sellers
+- Purchase compliance documents from third-party vendors
+- Sell Software as a Service (SaaS) solutions to AWS customers
+- Raise request for purchasing AWS Direct Connect connection
+
+**Correct Answer:**
+- AWS customer can buy software that has been bundled into customized Amazon Machine Image (AMIs) by the AWS Marketplace sellers
+- Sell Software as a Service (SaaS) solutions to AWS customers
+
+**Why Correct:** AWS Marketplace is digital catalog with thousands of software listings from ISVs to find/test/buy/deploy software that runs on AWS. Enables qualified partners to market and sell their software. Two ways: AMI (preferred, free or paid hourly/monthly/BYOL) and SaaS (if unable to build into AMI).
+**Why Wrong:** Purchase compliance documents = AWS Artifact is central resource for compliance reports and agreements. Buy EC2 Standard RI = EC2 console at console.aws.amazon.com/ec2. Direct Connect connection = Direct Connect console.
+
+### 66. Bonus - AWS Organizations Benefits (Select Two)
+**Question:** AWS Organizations provides which benefits? (Select two)
+
+- Volume discounts for Amazon EC2 and Amazon S3 aggregated across the member AWS accounts
+- Deploy patches on Amazon EC2 instances across the member AWS accounts
+- Check vulnerabilities on Amazon EC2 instances across the member AWS accounts
+- Share the reserved Amazon EC2 instances amongst the member AWS accounts
+- Provision Amazon EC2 Spot instances across the member AWS accounts
+
+**Correct Answer:**
+- Volume discounts for Amazon EC2 and Amazon S3 aggregated across the member AWS accounts
+- Share the reserved Amazon EC2 instances amongst the member AWS accounts
+
+**Why Correct:** Organizations helps centrally manage billing, control access/compliance/security, share resources such as reserved EC2 across accounts. Consolidated billing combined view + volume discounts aggregated. Key benefits via aws.amazon.com/organizations.
+**Why Wrong:** Deploy patches = Systems Manager. Check vulnerabilities = Inspector. Provision Spot = EC2 feature.
