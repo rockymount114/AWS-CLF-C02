@@ -1,0 +1,171 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    
+    <!-- Top Review Header Banner -->
+    <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-white border rounded shadow-sm">
+      <div>
+        <a href="{{ url_for('quiz.result', attempt_id=attempt.id) }}" class="btn btn-dark btn-sm fw-bold">
+          <i class="bi bi-arrow-left"></i> ← Back to Quiz Results
+        </a>
+      </div>
+      <div>
+        <span class="text-muted small me-2">Question {{ q_num }} of {{ total }} &bull; Attempt #{{ attempt.id }}</span>
+        {% if is_review %}
+          {% if aa.is_correct %}
+            <span class="badge bg-success"><i class="bi bi-check-circle-fill"></i> Answered Correctly</span>
+          {% else %}
+            <span class="badge bg-danger"><i class="bi bi-x-circle-fill"></i> Answered Incorrectly (False)</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress mb-4" style="height: 10px; border-radius: 5px;">
+      <div class="progress-bar bg-primary" role="progressbar" style="width: {{ (q_num / total * 100)|int }}%;"></div>
+    </div>
+
+    <!-- Question Card -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+        <h5 class="mb-0 fw-bold text-dark">
+          Question #{{ q_num }} 
+          {% if question.q_type == 'multi' %}
+            <span class="badge bg-warning text-dark ms-2 fs-6">Select Multiple</span>
+          {% endif %}
+        </h5>
+        {% if question.domain %}
+          <span class="badge bg-secondary fs-6">{{ question.domain }}</span>
+        {% endif %}
+      </div>
+      
+      <div class="card-body p-4">
+        <p class="fs-5 fw-bold text-dark mb-4" style="line-height: 1.5;">{{ question.question_text }}</p>
+
+        {% if is_review %}
+          <!-- Review Mode Options Display -->
+          <div class="options-container mb-4">
+            {% for opt in question.options %}
+              {% set is_selected = aa.is_selected(opt.id) %}
+              <div class="option-box 
+                {% if is_selected and not opt.is_correct %}
+                  selected-wrong
+                {% elif is_selected and opt.is_correct %}
+                  selected-correct
+                {% elif opt.is_correct %}
+                  is-correct-answer
+                {% endif %} d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="option-label">{{ opt.label }}</span>
+                  <span class="fw-medium fs-6">{{ opt.option_text }}</span>
+                </div>
+                <div>
+                  {% if is_selected and not opt.is_correct %}
+                    <span class="badge bg-danger"><i class="bi bi-x-circle-fill me-1"></i> Your Choice (False)</span>
+                  {% elif is_selected and opt.is_correct %}
+                    <span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i> Your Choice (Correct)</span>
+                  {% elif opt.is_correct %}
+                    <span class="badge bg-success bg-opacity-25 text-success border border-success"><i class="bi bi-check-lg me-1"></i> Correct Answer</span>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- Explanation Boxes -->
+          {% if question.explanation_correct %}
+            <div class="explanation-box-correct mb-3">
+              <h6 class="fw-bold text-success mb-2"><i class="bi bi-lightbulb-fill me-2"></i> Why Correct:</h6>
+              <div class="text-dark opacity-90" style="white-space: pre-line;">{{ question.explanation_correct }}</div>
+            </div>
+          {% endif %}
+
+          {% if question.explanation_wrong %}
+            <div class="explanation-box-wrong mb-3">
+              <h6 class="fw-bold text-danger mb-2"><i class="bi bi-exclamation-triangle-fill me-2"></i> Why Wrong / Distractor Notes:</h6>
+              <div class="text-dark opacity-90" style="white-space: pre-line;">{{ question.explanation_wrong }}</div>
+            </div>
+          {% endif %}
+
+          {% if question.reference_url %}
+            <div class="mt-2 mb-3">
+              <a href="{{ question.reference_url }}" target="_blank" class="btn btn-outline-info btn-sm">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Reference Documentation
+              </a>
+            </div>
+          {% endif %}
+
+        {% else %}
+          <!-- Taking Quiz Mode Form -->
+          <form method="post">
+            <div class="options-container mb-4">
+              {% for opt in question.options %}
+                {% set is_selected = aa.is_selected(opt.id) %}
+                <div class="form-check p-3 mb-2 border rounded option-box d-flex align-items-center">
+                  <input class="form-check-input me-3" 
+                         type="{% if question.q_type == 'multi' %}checkbox{% else %}radio{% endif %}" 
+                         name="option" 
+                         value="{{ opt.id }}" 
+                         id="opt{{ opt.id }}"
+                         {% if is_selected %}checked{% endif %}>
+                  <label class="form-check-label w-100 cursor-pointer text-dark fw-medium" for="opt{{ opt.id }}">
+                    <strong class="me-2">{{ opt.label }}.</strong> {{ opt.option_text }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+              <div>
+                <a href="{{ url_for('quiz.result', attempt_id=attempt.id) }}" class="btn btn-outline-secondary btn-sm" onclick="return confirm('Exit quiz and view results?');">
+                  Submit Quiz & View Results
+                </a>
+              </div>
+              <button type="submit" class="btn btn-primary px-4 py-2 fw-bold">
+                Submit & Next Question <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </div>
+          </form>
+        {% endif %}
+
+      </div>
+
+      <!-- Bottom Navigation Footer for Review Mode -->
+      {% if is_review %}
+        <div class="card-footer bg-light p-3 d-flex justify-content-between align-items-center">
+          <div>
+            {% if prev_q %}
+              <a href="{{ url_for('quiz.show_question', attempt_id=attempt.id, q_num=prev_q, from_result=1) }}" class="btn btn-outline-secondary">
+                &larr; Question #{{ prev_q }}
+              </a>
+            {% else %}
+              <button class="btn btn-outline-secondary" disabled>&larr; Previous</button>
+            {% endif %}
+          </div>
+          <div>
+            <a href="{{ url_for('quiz.result', attempt_id=attempt.id) }}" class="btn btn-primary px-4 fw-bold">
+              <i class="bi bi-card-checklist me-1"></i> Return to Results List
+            </a>
+          </div>
+          <div>
+            {% if next_q %}
+              <a href="{{ url_for('quiz.show_question', attempt_id=attempt.id, q_num=next_q, from_result=1) }}" class="btn btn-outline-secondary">
+                Question #{{ next_q }} &rarr;
+              </a>
+            {% else %}
+              <button class="btn btn-outline-secondary" disabled>Next &rarr;</button>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+

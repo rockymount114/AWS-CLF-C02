@@ -1,0 +1,256 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="result-container py-3">
+  
+  <h1 class="visually-hidden">AWS CLF-C02 Exam Results</h1>
+
+  <!-- Top Status & Scaled Score Card -->
+  <div class="card shadow-sm border-0 rounded-4 mb-4 bg-white">
+    <div class="card-body p-4 p-md-5">
+      <div class="row align-items-center g-3">
+        <div class="col-md-7">
+          {% if score_percent >= 70 %}
+            <span class="status-badge-passed mb-2"><i class="bi bi-patch-check-fill me-1"></i> PASSED</span>
+            <h3 class="fw-bold text-dark mb-1">Awesome work! Exam ready!</h3>
+            <p class="text-muted mb-0 small">You've passed the AWS Cloud Practitioner readiness benchmark.</p>
+          {% else %}
+            <span class="status-badge-failed mb-2"><i class="bi bi-x-circle-fill me-1"></i> FAILED</span>
+            <h3 class="fw-bold text-dark mb-1">Keep practicing. You can do this!</h3>
+            <p class="text-muted mb-0 small">Focus on your weak domains below to get exam ready.</p>
+          {% endif %}
+        </div>
+        <div class="col-md-5 text-md-end">
+          <div class="scaled-score-value {% if score_percent >= 70 %}text-success{% else %}text-danger{% endif %}">
+            {{ scaled_score }}<span class="fs-5 text-muted font-monospace font-normal ms-1">/1000</span>
+          </div>
+          <div class="text-muted small mt-1 font-monospace">
+            <strong>{{ score_percent }}% correct</strong> &bull; {{ attempt.score }}/{{ attempt.total }} questions
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Overview & Domain Breakdown Card -->
+  <div class="card shadow-sm border-0 rounded-4 mb-4 bg-white">
+    <div class="card-body p-4 p-md-5">
+      
+      <!-- AWS Scaled Scoring Info Notice -->
+      <div class="p-3 mb-4 rounded-3 border bg-light text-dark small d-flex align-items-start gap-2">
+        <i class="bi bi-info-circle-fill text-primary fs-5 mt-1"></i>
+        <div>
+          <strong class="text-dark">AWS Scaled Scoring:</strong> Scores range from 100–1000, where 100 is the minimum (0% correct) and 1000 is the maximum (100% correct). You need <strong>700+</strong> to pass.
+        </div>
+      </div>
+
+      <!-- Key Metrics Grid -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-4">
+          <div class="p-3 rounded-3 border bg-light">
+            <span class="text-muted small d-block mb-1">Pass mark</span>
+            <span class="font-monospace fw-bold fs-5 text-dark">700/1000</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4">
+          <div class="p-3 rounded-3 border bg-light">
+            <span class="text-muted small d-block mb-1">Time taken</span>
+            <span class="font-monospace fw-bold fs-5 text-dark">{{ time_taken_str }}</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-3 rounded-3 border bg-light">
+            <span class="text-muted small d-block mb-1">Date taken (US/Eastern)</span>
+            <span class="font-monospace fw-semibold fs-6 text-dark">{{ attempt.started_at|ny_date }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain breakdown -->
+      <h4 class="fw-bold text-dark mb-3"><i class="bi bi-pie-chart-fill me-2 text-primary"></i> Domain breakdown</h4>
+      <div class="domain-breakdown-list mb-2">
+        {% for d, s in domain_stats.items() %}
+          <div class="domain-stat-row">
+            <div class="flex-grow-1 me-3">
+              <span class="fw-semibold text-dark d-block mb-1">{{ d }}</span>
+              <span class="font-monospace text-muted small">{{ s.correct }}/{{ s.total }} correct</span>
+              <div class="progress mt-2" style="height: 6px;">
+                <div class="progress-bar {% if s.percent >= 70 %}bg-success{% else %}bg-danger{% endif %}" role="progressbar" style="width: {{ s.percent }}%;"></div>
+              </div>
+            </div>
+            <div class="text-end ms-3">
+              <span class="font-monospace fs-4 fw-bold {% if s.percent >= 70 %}text-success{% else %}text-danger{% endif %}">
+                {{ s.percent }}%
+              </span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Target Weak Domains Adaptive Card -->
+  <div class="cta-box-adaptive mb-4">
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <i class="bi bi-shield-lock-fill text-primary fs-5"></i>
+      <h6 class="fw-bold text-dark mb-0 fs-6">Target your weak domains</h6>
+    </div>
+    <p class="text-muted small mb-0">Use domain-filtered practice to focus specifically on the domains where your score is lowest.</p>
+  </div>
+
+  <!-- Primary Action Buttons -->
+  <div class="mb-5 space-y-3">
+    <a href="#questions-review-section" class="btn btn-primary btn-lg rounded-pill w-100 py-3 fw-bold mb-3 shadow-sm">
+      <i class="bi bi-list-check me-2"></i> Review Questions
+    </a>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <a href="/dashboard" class="btn btn-outline-secondary btn-lg rounded-pill w-100 py-2.5 fw-semibold fs-6">
+          <i class="bi bi-house-door-fill me-1"></i> Back to Home
+        </a>
+      </div>
+      <div class="col-md-6">
+        <form action="/quiz/start" method="post">
+          <input type="hidden" name="mode" value="{{ attempt.mode }}">
+          <input type="hidden" name="count" value="{{ attempt.total }}">
+          <input type="hidden" name="domain" value="{{ attempt.domain_filter or 'All' }}">
+          <button type="submit" class="btn btn-outline-primary btn-lg rounded-pill w-100 py-2.5 fw-semibold fs-6">
+            <i class="bi bi-arrow-counterclockwise me-1"></i> Retake Exam
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Questions Breakdown & Review Section -->
+  <div id="questions-review-section" class="pt-4 border-top">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="fw-bold mb-0 text-dark"><i class="bi bi-patch-question-fill text-warning me-2"></i> Detailed Question Review</h4>
+      <span class="text-muted small">{{ answers|length }} questions</span>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="d-flex gap-2 mb-4">
+      <button type="button" class="btn btn-dark filter-btn active" onclick="filterQuestions('all', this)">
+        <i class="bi bi-list-ul"></i> All Questions ({{ answers|length }})
+      </button>
+      <button type="button" class="btn btn-outline-danger filter-btn" onclick="filterQuestions('wrong', this)">
+        <i class="bi bi-x-circle-fill"></i> ❌ Wrong Only ({{ wrong_count }})
+      </button>
+      <button type="button" class="btn btn-outline-success filter-btn" onclick="filterQuestions('correct', this)">
+        <i class="bi bi-check-circle-fill"></i> ✔ Correct Only ({{ attempt.score }})
+      </button>
+    </div>
+
+    <!-- Question Results List -->
+    <div class="questions-container">
+      {% for aa in answers %}
+        {% set q = aa.question %}
+        {% set q_num = loop.index %}
+        <div class="card mb-3 quiz-card q-card-item {% if not aa.is_correct %}wrong-question-card{% else %}correct-question-card{% endif %}" 
+             data-status="{% if aa.is_correct %}correct{% else %}wrong{% endif %}">
+          <div class="card-header d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center gap-2">
+              <span class="fw-bold fs-5">Question #{{ q_num }}</span>
+              {% if q and q.domain %}
+                <span class="badge bg-secondary">{{ q.domain }}</span>
+              {% endif %}
+              {% if not aa.is_correct %}
+                <span class="badge-status-wrong"><i class="bi bi-x-lg"></i> Answered Incorrectly (False)</span>
+              {% else %}
+                <span class="badge-status-correct"><i class="bi bi-check-lg"></i> Answered Correctly (True)</span>
+              {% endif %}
+            </div>
+            <div>
+              {% if not aa.is_correct %}
+                <a href="{{ url_for('quiz.show_question', attempt_id=attempt.id, q_num=q_num, from_result=1) }}" class="btn btn-recheck-wrong shadow-sm">
+                  <i class="bi bi-arrow-right-circle-fill me-1"></i> 🔍 Check Wrong Question #{{ q_num }}
+                </a>
+              {% else %}
+                <a href="{{ url_for('quiz.show_question', attempt_id=attempt.id, q_num=q_num, from_result=1) }}" class="btn btn-outline-success btn-sm fw-semibold">
+                  <i class="bi bi-eye-fill me-1"></i> Review Question #{{ q_num }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="card-body p-4">
+            <p class="card-text fw-semibold fs-6 text-dark mb-3">{{ q.question_text if q else 'Question not found' }}</p>
+            
+            {% if q and q.options %}
+              <div class="options-summary">
+                {% for opt in q.options %}
+                  {% set is_selected = aa.is_selected(opt.id) %}
+                  <div class="p-2 mb-2 rounded border text-start d-flex align-items-center justify-content-between 
+                    {% if is_selected and not opt.is_correct %}
+                      bg-danger-subtle border-danger text-danger-emphasis
+                    {% elif opt.is_correct %}
+                      bg-success-subtle border-success text-success-emphasis
+                    {% else %}
+                      bg-light border-light-subtle text-muted
+                    {% endif %}">
+                    <div>
+                      <strong class="me-2">{{ opt.label }}.</strong> {{ opt.option_text }}
+                    </div>
+                    <div>
+                      {% if is_selected and not opt.is_correct %}
+                        <span class="badge bg-danger"><i class="bi bi-x-circle-fill me-1"></i> Your Choice (Incorrect)</span>
+                      {% elif is_selected and opt.is_correct %}
+                        <span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i> Your Choice (Correct)</span>
+                      {% elif opt.is_correct %}
+                        <span class="badge bg-outline-success text-success border border-success"><i class="bi bi-check-lg me-1"></i> Correct Answer</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="mt-3 pt-2 border-top d-flex justify-content-end">
+              {% if not aa.is_correct %}
+                <a href="{{ url_for('quiz.show_question', attempt_id=attempt.id, q_num=q_num, from_result=1) }}" class="btn btn-danger btn-sm px-3 fw-bold">
+                  <i class="bi bi-arrow-return-right me-1"></i> Check Explanation & Answers &rarr;
+                </a>
+              {% else %}
+                <a href="{{ url_for('quiz.show_question', attempt_id=attempt.id, q_num=q_num, from_result=1) }}" class="btn btn-outline-secondary btn-sm px-3">
+                  Review Explanation &rarr;
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+<script>
+function filterQuestions(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.remove('btn-dark', 'btn-danger', 'btn-success');
+    b.classList.add('btn-outline-dark');
+  });
+  
+  if (type === 'all') {
+    btn.className = 'btn btn-dark filter-btn active';
+  } else if (type === 'wrong') {
+    btn.className = 'btn btn-danger filter-btn active';
+  } else if (type === 'correct') {
+    btn.className = 'btn btn-success filter-btn active';
+  }
+
+  const cards = document.querySelectorAll('.q-card-item');
+  cards.forEach(card => {
+    if (type === 'all') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = card.getAttribute('data-status') === type ? 'block' : 'none';
+    }
+  });
+}
+</script>
+{% endblock %}
+
+

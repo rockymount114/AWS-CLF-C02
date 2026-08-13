@@ -1,0 +1,90 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="fw-bold mb-1"><i class="bi bi-file-earmark-arrow-up text-info me-2"></i> Import Questions from Markdown</h2>
+        <p class="text-muted mb-0">Upload a structured Markdown (`.md`) file to auto-parse and import questions into the database.</p>
+      </div>
+      <a href="{{ url_for('admin.questions') }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Back to Questions
+      </a>
+    </div>
+
+    <!-- Upload Form Card -->
+    <div class="card shadow-sm border-0 mb-4 bg-light">
+      <div class="card-body p-4">
+        <h5 class="fw-bold text-dark mb-3"><i class="bi bi-cloud-upload me-2 text-primary"></i> Upload Markdown File</h5>
+        <form method="post" enctype="multipart/form-data">
+          <div class="row g-3 align-items-center">
+            <div class="col">
+              <input type="file" name="file" class="form-control" accept=".md" required>
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary px-4 fw-bold">
+                <i class="bi bi-upload me-1"></i> Upload & Import
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Markdown Format Specification Guide -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-dark text-white py-3">
+        <h5 class="mb-0 fw-bold"><i class="bi bi-code-square me-2 text-warning"></i> Required Markdown Question Format</h5>
+      </div>
+      <div class="card-body p-4">
+        <p class="fs-6 text-dark">
+          Your Markdown file must follow the standard block format below. Each question block starts with <code>### &lt;number&gt;. &lt;Title&gt;</code> followed by the specific keywords:
+        </p>
+
+        <ul class="list-group mb-4">
+          <li class="list-group-item"><code>### 1. Title</code> &mdash; Question header divider line.</li>
+          <li class="list-group-item"><code>**Question:**</code> &mdash; Full question statement text.</li>
+          <li class="list-group-item"><code>- Option text</code> &mdash; Answer choices listed as unordered bullet points (starts with <code>- </code>).</li>
+          <li class="list-group-item"><code>**Correct Answer:**</code> &mdash; Text matching the correct option(s).</li>
+          <li class="list-group-item"><code>**Why Correct:**</code> &mdash; Explanation text for correct answers.</li>
+          <li class="list-group-item"><code>**Why Wrong:**</code> &mdash; Explanation text for incorrect options / distractor notes.</li>
+        </ul>
+
+        <h6 class="fw-bold text-primary mb-2"><i class="bi bi-file-text me-1"></i> Format Example 1: Single Choice Question</h6>
+        <div class="bg-dark text-light p-3 rounded mb-4 font-monospace" style="font-size: 0.9rem; white-space: pre-wrap;">
+### 1. Hardware Device for Data Encryption for Compliance
+**Question:** Due to regulatory and compliance reasons, an organization is supposed to use a hardware device for any data encryption operations in the cloud. Which AWS service can be used to meet this compliance requirement?
+
+- AWS Key Management Service (AWS KMS)
+- AWS CloudHSM
+- AWS Secrets Manager
+- AWS Certificate Manager
+
+**Correct Answer:** AWS CloudHSM
+**Why Correct:** CloudHSM provides single-tenant, dedicated FIPS 140-2 Level 3 validated Hardware Security Modules (HSMs) inside your VPC.
+**Why Wrong:** KMS is multi-tenant/shared. Secrets Manager stores secrets. Certificate Manager manages SSL certificates.</div>
+
+        <h6 class="fw-bold text-primary mb-2"><i class="bi bi-ui-checks me-1"></i> Format Example 2: Multiple Choice Question (Select Two)</h6>
+        <div class="bg-dark text-light p-3 rounded mb-3 font-monospace" style="font-size: 0.9rem; white-space: pre-wrap;">
+### 2. Services with Data Encryption Automatically Enabled (Select Two)
+**Question:** Which of the following AWS services have data encryption automatically enabled? (Select two)
+
+- AWS Storage Gateway
+- Amazon Elastic File System (Amazon EFS)
+- Amazon S3 Glacier
+- Amazon Elastic Block Store (Amazon EBS)
+
+**Correct Answer:**
+- AWS Storage Gateway
+- Amazon S3 Glacier
+
+**Why Correct:** All data written to Storage Gateway and S3 Glacier is automatically encrypted at rest with AES-256.
+**Why Wrong:** EBS and EFS require manually enabling encryption at creation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

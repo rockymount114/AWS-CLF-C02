@@ -1,0 +1,162 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1"><i class="bi bi-patch-question-fill text-warning me-2"></i> Question Management</h2>
+    <p class="text-muted mb-0">
+      Admin Control &bull; Showing <span class="badge bg-primary fs-6">{{ questions|length }}</span> matching question(s)
+    </p>
+  </div>
+  <div class="d-flex gap-2">
+    <form action="{{ url_for('admin.deduplicate_questions') }}" method="post" class="d-inline" onsubmit="return confirm('Scan database and remove all duplicate questions?');">
+      <button type="submit" class="btn btn-outline-warning text-dark font-weight-bold shadow-sm">
+        <i class="bi bi-copy me-1"></i> Remove Duplicates
+      </button>
+    </form>
+    <a href="{{ url_for('admin.export_questions') }}" class="btn btn-outline-secondary shadow-sm" title="Export all questions as JSON">
+      <i class="bi bi-download me-1"></i> Export JSON
+    </a>
+    <a href="/admin/import" class="btn btn-outline-info"><i class="bi bi-file-earmark-arrow-up me-1"></i> Import Markdown</a>
+    <a href="/admin/questions/new" class="btn btn-success fw-bold"><i class="bi bi-plus-circle-fill me-1"></i> Add New Question</a>
+  </div>
+
+</div>
+
+<!-- Admin Search & Filter Bar Card -->
+<div class="card shadow-sm border-0 mb-4 bg-light">
+  <div class="card-body p-3">
+    <form method="get" action="{{ url_for('admin.questions') }}" id="filterForm">
+      <div class="row g-2 align-items-center">
+        <!-- Search Bar -->
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text bg-white text-muted"><i class="bi bi-search"></i></span>
+            <input type="text" 
+                   name="search" 
+                   id="liveSearchInput" 
+                   class="form-control" 
+                   placeholder="Search question text or explanations..." 
+                   value="{{ search or '' }}">
+          </div>
+        </div>
+
+        <!-- Domain Filter -->
+        <div class="col-md-3">
+          <select name="domain" class="form-select" onchange="this.form.submit()">
+            <option value="All" {% if domain == 'All' %}selected{% endif %}>All Domains</option>
+            {% for d in domains %}
+              <option value="{{ d }}" {% if domain == d %}selected{% endif %}>{{ d }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Question Type Filter -->
+        <div class="col-md-2">
+          <select name="q_type" class="form-select" onchange="this.form.submit()">
+            <option value="All" {% if q_type == 'All' %}selected{% endif %}>All Types</option>
+            <option value="single" {% if q_type == 'single' %}selected{% endif %}>Single Choice</option>
+            <option value="multi" {% if q_type == 'multi' %}selected{% endif %}>Multiple Choice</option>
+          </select>
+        </div>
+
+        <!-- Difficulty Filter -->
+        <div class="col-md-2">
+          <select name="difficulty" class="form-select" onchange="this.form.submit()">
+            <option value="All" {% if difficulty == 'All' %}selected{% endif %}>All Difficulties</option>
+            <option value="easy" {% if difficulty == 'easy' %}selected{% endif %}>Easy</option>
+            <option value="medium" {% if difficulty == 'medium' %}selected{% endif %}>Medium</option>
+            <option value="hard" {% if difficulty == 'hard' %}selected{% endif %}>Hard</option>
+          </select>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="col-md-1 d-flex gap-1">
+          <button type="submit" class="btn btn-primary w-100" title="Apply Filter"><i class="bi bi-funnel-fill"></i></button>
+          {% if search or domain != 'All' or q_type != 'All' or difficulty != 'All' %}
+            <a href="{{ url_for('admin.questions') }}" class="btn btn-outline-secondary" title="Reset Filters"><i class="bi bi-x-circle"></i></a>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Questions Table Card -->
+<div class="card shadow-sm border-0">
+  <div class="card-body p-0">
+    {% if questions %}
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" id="questionsTable">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col" class="ps-3">ID</th>
+              <th scope="col" style="width: 45%;">Question Text</th>
+              <th scope="col">Domain</th>
+              <th scope="col">Type</th>
+              <th scope="col">Difficulty</th>
+              <th scope="col" class="text-end pe-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for q in questions %}
+              <tr class="q-row-item">
+                <td class="ps-3 fw-bold">#{{ q.id }}</td>
+                <td>
+                  <span class="fw-medium text-dark q-text-content">{{ q.question_text[:110] }}{% if q.question_text|length > 110 %}...{% endif %}</span>
+                </td>
+                <td><span class="badge bg-secondary">{{ q.domain or 'General' }}</span></td>
+                <td>
+                  <span class="badge {% if q.q_type == 'multi' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
+                    {{ q.q_type }}
+                  </span>
+                </td>
+                <td><span class="badge bg-light text-dark border">{{ q.difficulty or 'medium' }}</span></td>
+                <td class="text-end pe-3">
+                  <a href="{{ url_for('admin.edit_question', qid=q.id) }}" class="btn btn-sm btn-primary me-1 fw-bold shadow-sm">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </a>
+                  <a href="{{ url_for('admin.delete_question', qid=q.id) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete Question #{{ q.id }}?');">
+                    <i class="bi bi-trash"></i> Delete
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="text-center py-5">
+        <i class="bi bi-search text-muted display-4 mb-2"></i>
+        <h5 class="text-dark">No Questions Found</h5>
+        <p class="text-muted">No questions match your current search and filter criteria.</p>
+        <a href="{{ url_for('admin.questions') }}" class="btn btn-outline-primary btn-sm">Clear All Filters</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Instant Client-Side Live Filter Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('liveSearchInput');
+  const rows = document.querySelectorAll('.q-row-item');
+
+  searchInput.addEventListener('keyup', function() {
+    const term = searchInput.value.toLowerCase().trim();
+    rows.forEach(row => {
+
+      const text = row.innerText.toLowerCase();
+      if (text.includes(term)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+{% endblock %}
+
+
