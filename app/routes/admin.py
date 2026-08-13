@@ -77,7 +77,7 @@ def questions():
     qs = query.order_by(Question.id.desc()).all()
     
     db_domains = [d[0] for d in db.session.query(Question.domain).distinct().all() if d[0]]
-    standard_domains = ['Cloud Concepts', 'Security & Compliance', 'Cloud Technology & Service', 'Billing, Priceing & Support']
+    standard_domains = ['Cloud Concepts', 'Security & Compliance', 'Cloud Technology & Service', 'Billing, Pricing & Support']
     all_domains = sorted(list(set(db_domains + standard_domains)))
 
     return render_template('admin/questions.html',
@@ -248,8 +248,13 @@ def import_md():
                     opt_clean = opt_text.strip()
                     if not opt_clean or opt_clean in ['--', '-', '---'] or set(opt_clean) <= {'-', ' '}:
                         continue
-                    opt_lower = opt_clean[:40].lower()
-                    is_correct = (opt_lower in correct_text) or (len(opt_lower) > 5 and opt_lower[:25] in correct_text)
+                    # Match against individual lines/bullet items in correct_text
+                    corr_lines = [cl.strip().lstrip('-*• ').strip().lower() for cl in item['correct_text'].split('\n') if cl.strip()]
+                    opt_low = opt_clean.lower()
+                    is_correct = any(
+                        opt_low == cl or (len(opt_low) > 15 and opt_low in cl) or (len(cl) > 15 and cl in opt_low)
+                        for cl in corr_lines
+                    ) if corr_lines else (opt_low in correct_text)
                     db.session.add(Option(
                         question_id=q.id,
                         option_text=opt_clean[:500],

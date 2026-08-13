@@ -30,9 +30,13 @@ with app.app_context():
             opt_clean = opt_text.strip()
             if not opt_clean or opt_clean in ['--', '-', '---'] or set(opt_clean) <= {'-', ' '}:
                 continue
-            is_correct = False
-            if opt_clean[:30].lower() in item['correct_text'].lower() or item['correct_text'].lower() in opt_clean.lower():
-                is_correct = True
+            # Match against individual lines/bullet items in correct_text
+            corr_lines = [cl.strip().lstrip('-*• ').strip().lower() for cl in item['correct_text'].split('\n') if cl.strip()]
+            opt_low = opt_clean.lower()
+            is_correct = any(
+                opt_low == cl or (len(opt_low) > 15 and opt_low in cl) or (len(cl) > 15 and cl in opt_low)
+                for cl in corr_lines
+            ) if corr_lines else (opt_low in item['correct_text'].lower())
             opt = Option(question_id=q.id, option_text=opt_clean[:500], label=labels[idx] if idx < len(labels) else str(idx), is_correct=is_correct)
             db.session.add(opt)
 

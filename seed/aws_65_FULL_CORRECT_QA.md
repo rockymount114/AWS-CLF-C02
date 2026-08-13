@@ -387,11 +387,11 @@
 - AWS is responsible for Security 'of' the Cloud
 
 **Correct Answer:**
-- For abstracted services like Amazon S3, AWS operates infrastructure layer, operating system, and platforms
+- For abstracted services like S3, AWS operates infrastructure layer, OS, and platforms
 - AWS is responsible for Security 'of' the Cloud
 
 **Why Correct:** Shared Responsibility = AWS OF Cloud (physical datacenters, hardware, networking, hypervisor), Customer IN Cloud. For abstracted/managed services like S3, DynamoDB, SQS - AWS manages infra to OS to platform, customer only data/access policies/encryption.
-**Why Wrong:** For IaaS like EC2, customer IS responsible for guest OS patching/updates/antivirus (AWS only host/hypervisor) - but options 4 and 5 are more textbook. Awareness & Training is customer's responsibility.
+**Why Wrong:** For IaaS like EC2, customer IS responsible for guest OS patching/updates/antivirus (AWS only host/hypervisor). Awareness & Training is customer's responsibility. Configuration of Security Groups and IAM policies is customer's responsibility.
 
 ### 31. Block-Level Storage Types in AWS (Select Two)
 **Question:** Which are block-level storage types? (Select two)
@@ -456,7 +456,9 @@
 - Trusted Advisor
 - Fair Use Policy
 
-**Correct Answer:** AWS Acceptable Use Policy (AUP)
+**Correct Answer:** AWS Acceptable Use Policy
+**Why Correct:** The AWS Acceptable Use Policy describes prohibited uses of the web services offered by Amazon Web Services and its affiliates, including illegal activities, network abuse, spamming, and hosting malicious or harmful content.
+**Why Wrong:** Applicable Use Policy and Fair Use Policy are fabricated terms in this context. AWS Trusted Advisor is an automated optimization tool, not a compliance or acceptable use policy.
 
 ### 36. Serverless Scheduled Task Every Monday 2 AM Runs 5 Minutes
 **Question:** Company needs serverless solution for backup task scheduled every Monday 2 AM that runs for 5 minutes. Which two services? (Select two)
@@ -482,7 +484,9 @@
 - Use AWS Budgets
 - Use AWS Cost Explorer
 
-**Correct Answer:** Create tags for each department and activate as Cost Allocation Tags (Simplest). Best practice/secure way = Create different accounts per department using Organizations for natural separation + consolidated billing + security boundaries.
+**Correct Answer:** Create tags for each department and activate as Cost Allocation Tags
+**Why Correct:** Cost Allocation Tags allow you to assign metadata (key-value pairs such as Department: Marketing or CostCenter: 101) to AWS resources. Once activated in Billing and Cost Management, AWS uses these tags to organize and break down costs on your monthly cost allocation report.
+**Why Wrong:** Creating separate AWS accounts per department is a valid organizational structure but requires much higher administrative overhead compared to simply using Cost Allocation Tags. AWS Budgets sets spending thresholds and alerts, and Cost Explorer visualizes historical spend.
 
 ### 38. Route 53 Routing for Blue/Green 80% / 20%
 **Question:** Which Route 53 routing lets you route traffic to multiple resources in proportions you specify - e.g., 80% to one server and 20% to another. Useful for blue/green, A/B testing.
@@ -538,11 +542,9 @@
 - AWS Edge Locations
 - AWS Local Zones
 
-**Correct Answer Note:** There is conflict in exam dumps. Two answers are accepted depending on wording:
-- **AWS Edge Locations** = Sites in 400+ cities globally used by CloudFront, Global Accelerator to cache content and deliver low-latency gameplay/data to end-users in various locations globally. Correct if question says "various locations globally / cache content".
-- **AWS Local Zones** = Extension of Region in specific large metro city (e.g., Los Angeles), place compute/storage closer to large population centers for very low latency. Correct if question says "deploy workloads closer to end-users / run EC2 locally".
-
-**Why Others Wrong:** Wavelength = ultra-low latency apps on 5G networks. Direct Connect = dedicated line from on-prem to AWS, not for end-user access.
+**Correct Answer:** AWS Edge Locations
+**Why Correct:** AWS Edge Locations are geographically dispersed data centers worldwide that deliver cached content and low-latency network routing through services like Amazon CloudFront and AWS Global Accelerator, providing consistent low-latency experiences to users across various global locations.
+**Why Wrong:** AWS Wavelength embeds AWS compute and storage services within 5G telecommunication networks for ultra-low latency mobile edge applications. AWS Direct Connect provides a dedicated private physical network connection between on-premises and AWS. AWS Local Zones place compute and storage closer to specific metropolitan centers for single-digit millisecond latency rather than broad global distribution.
 
 ### 43. Automate Code Deployments to EC2 and On-Premises
 **Question:** Which service automates code deployments to both Amazon EC2 and on-premises servers?
@@ -577,6 +579,8 @@
 - Elasticity
 
 **Correct Answer:** Massive economies of scale
+**Why Correct:** "Benefit from massive economies of scale" is one of the 6 core advantages of cloud computing defined by AWS. By aggregating usage from hundreds of thousands of customers in the cloud, AWS achieves higher economies of scale, translating into lower pay-as-you-go prices for customers.
+**Why Wrong:** "Increase speed and agility" refers to rapid resource provisioning in minutes. "High availability" and "Elasticity" refer to architectural resilience and scaling compute dynamically with demand.
 
 ### 46. Automatically Add/Remove EC2 Instances to Handle Current Traffic Demand
 **Question:** Which service automatically adds or removes EC2 instances to ensure you have right capacity to handle current traffic demand?
