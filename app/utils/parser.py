@@ -19,6 +19,14 @@ def parse_markdown_qa(file_path):
             d_match = re.search(r'\*\*Domain:\*\*\s*`?([^`\n|]+)`?', body)
             domain = d_match.group(1).strip() if d_match else 'Cloud Technology & Service'
             
+            # Type
+            t_match = re.search(r'\*\*Type:\*\*\s*`?([^`\n|]+)`?', body)
+            type_raw = t_match.group(1).strip().lower() if t_match else ''
+            
+            # Difficulty
+            diff_match = re.search(r'\*\*Difficulty:\*\*\s*`?([^`\n|]+)`?', body)
+            difficulty = diff_match.group(1).strip().lower() if diff_match else 'medium'
+            
             # Question text
             q_match = re.search(r'\*\*Question:\*\*\s*(?:>\s*)?(.*?)(?=\n\*\*Options:\*\*|\n-\s*\[?[A-E]\]?|\n\*\*Correct Answer:)', body, re.S)
             if not q_match:
@@ -32,16 +40,21 @@ def parse_markdown_qa(file_path):
                 raw_text = opts_block_match.group(0)
                 for line in raw_text.split('\n'):
                     line_clean = line.strip()
+                    if re.match(r'^\*{0,2}Options:?\*{0,2}', line_clean, re.I):
+                        continue
                     if line_clean.startswith('-') or line_clean.startswith('*'):
                         opt_str = re.sub(r'^[-\*]\s*', '', line_clean).strip()
                         # Remove bolded brackets like **[A]** or [A] or A.
                         opt_str = re.sub(r'^(?:\*{0,2}\[[A-H]\]\*{0,2}|[A-H][\.\):])\s*-?\s*', '', opt_str).strip()
-                        if opt_str and not opt_str.startswith('**Options:**') and opt_str not in ['--', '-', '---']:
+                        if opt_str and not re.match(r'^\*{0,2}Options:?\*{0,2}', opt_str, re.I) and opt_str not in ['--', '-', '---']:
                             opts.append(opt_str)
             else:
                 raw_opts = re.findall(r'^-\s*(.+)', body, re.M)
-                opts = [re.sub(r'^(?:\*{0,2}\[[A-H]\]\*{0,2}|[A-H][\.\):])\s*-?\s*', '', o.strip()).strip() 
-                        for o in raw_opts if o.strip() and o.strip() not in ['--', '-', '---']][:5]
+                for o in raw_opts:
+                    clean_o = re.sub(r'^(?:\*{0,2}\[[A-H]\]\*{0,2}|[A-H][\.\):])\s*-?\s*', '', o.strip()).strip()
+                    if clean_o and not re.match(r'^\*{0,2}Options:?\*{0,2}', clean_o, re.I) and clean_o not in ['--', '-', '---']:
+                        opts.append(clean_o)
+                opts = opts[:5]
 
             # Correct Answer
             corr_match = re.search(r'\*\*Correct Answer:\*\*\s*(.*?)(?=\n\*\*Why|\n---|\Z)', body, re.S)
@@ -52,7 +65,7 @@ def parse_markdown_qa(file_path):
             for cl in corr_text.split('\n'):
                 c_clean = cl.strip().lstrip('-* ').strip()
                 c_clean = re.sub(r'^\*{0,2}\[[A-H]\]\*{0,2}\s*', '', c_clean).strip('*_ ')
-                if c_clean:
+                if c_clean and not re.match(r'^\*{0,2}Correct Answer:?\*{0,2}', c_clean, re.I):
                     cleaned_corr_lines.append(c_clean)
             clean_correct_str = "\n".join(cleaned_corr_lines) if cleaned_corr_lines else corr_text
 
@@ -64,10 +77,21 @@ def parse_markdown_qa(file_path):
             why_wrong_match = re.search(r'\*\*Why (?:Others? Are Incorrect|Others? Wrong|Wrong):\*\*\s*(.*?)(?=\n---|\n###|\Z)', body, re.S)
             why_wrong = why_wrong_match.group(1).strip() if why_wrong_match else ''
             
+            # Determine q_type
+            if 'multi' in type_raw or 'select' in type_raw:
+                q_type = 'multi'
+            elif 'single' in type_raw:
+                q_type = 'single'
+            else:
+                is_multi = 'select two' in q_text.lower() or 'select 2' in q_text.lower() or 'select three' in q_text.lower() or 'which two' in q_text.lower() or 'two actions' in q_text.lower() or 'two services' in q_text.lower() or len(cleaned_corr_lines) > 1
+                q_type = 'multi' if is_multi else 'single'
+
             questions.append({
                 'num': q_num,
                 'title': q_title,
                 'domain': domain,
+                'difficulty': difficulty,
+                'q_type': q_type,
                 'question_text': q_text,
                 'options_raw': opts,
                 'correct_text': clean_correct_str,
