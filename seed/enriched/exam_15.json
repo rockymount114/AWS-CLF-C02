@@ -1,0 +1,1887 @@
+[
+  {
+    "source_exam": 15,
+    "source_num": 1,
+    "question_text": "How do customers benefit from Amazon's massive economies of scale?",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Periodic price reductions as the result of Amazon's operational efficiencies",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "New Amazon EC2 instance types providing the latest hardware",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "The ability to scale resources up and down to match demand",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Increased reliability across multiple Availability Zones",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "Massive economies of scale is one of the primary financial advantages of cloud computing. By aggregating usage from hundreds of thousands of customers, AWS achieves higher efficiencies and lower per-unit costs, passing these savings back to customers as periodic price reductions.",
+    "explanation_wrong": "Option B describes continuous hardware modernization. Option C describes elasticity. Option D describes high availability and fault tolerance.",
+    "reference_url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 2,
+    "question_text": "Which AWS services can be used to gather information about AWS account activity? (Select TWO.)",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon CloudFront",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "AWS Cloud9",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS CloudTrail",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "AWS CloudHSM",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Amazon CloudWatch",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "C",
+      "E"
+    ],
+    "explanation_correct": "AWS CloudTrail records governance API calls and user management actions across the account, while Amazon CloudWatch collects operational performance metrics, log files, and alarm events across AWS resources.",
+    "explanation_wrong": "Option A (Amazon CloudFront) is a CDN content delivery service. Option B (AWS Cloud9) is a cloud-based integrated development environment (IDE). Option D (AWS CloudHSM) is a dedicated Hardware Security Module for cryptographic keys.",
+    "reference_url": "https://aws.amazon.com/cloudtrail/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 3,
+    "question_text": "Which of the following common IT tasks can AWS cover to free up company resources? (Select TWO.)",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Patching databases software",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Testing application releases",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Backing up databases",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Designing database schema",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Writing application code",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "C"
+    ],
+    "explanation_correct": "Through managed database services like Amazon RDS and Amazon DynamoDB, AWS automates routine operational tasks such as software patching, OS maintenance, and automated database backups.",
+    "explanation_wrong": "Options B, D, and E (Testing application releases, designing database schemas, and writing application code) remain customer responsibilities for building applications in the cloud.",
+    "reference_url": "https://aws.amazon.com/rds/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 4,
+    "question_text": "In which scenario should Amazon EC2 Spot Instances be used?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "A company has a critical, long-running database that cannot experience downtime.",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "A company needs guaranteed compute capacity for 3 years.",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "A customer needs to run a web server with predictable, steady-state baseline traffic.",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "A company has a number of infrequent, interruptible jobs that are currently using On-Demand Instances.",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "Amazon EC2 Spot Instances offer up to a 90% discount on unused compute capacity, making them ideal for stateless, fault-tolerant, flexible, and interruptible workloads such as batch processing, big data analysis, and image rendering.",
+    "explanation_wrong": "Option A requires high availability (On-Demand or Reserved Multi-AZ). Option B requires Reserved Instances or Savings Plans. Option C requires steady-state Reserved Instances or Savings Plans.",
+    "reference_url": "https://aws.amazon.com/ec2/spot/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 5,
+    "question_text": "Which AWS feature should a customer leverage to achieve high availability for Amazon EC2 workloads against data center outages?",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS Direct Connect",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Availability Zones",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Edge locations",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Virtual Private Gateways",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "Deploying Amazon EC2 instances across multiple Availability Zones (AZs) ensures high availability, as each AZ consists of one or more physically isolated data centers with redundant power and networking.",
+    "explanation_wrong": "Option A (AWS Direct Connect) provides dedicated network connections from on-premises to AWS. Option C (Edge locations) are CloudFront caching nodes. Option D (Virtual Private Gateways) are VPN/Direct Connect VPC endpoints.",
+    "reference_url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 6,
+    "question_text": "Which is the minimum AWS Support plan that includes Infrastructure Event Management (IEM) without additional fee?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "medium",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Enterprise",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Business",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Developer",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Basic",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "AWS Infrastructure Event Management (IEM) is included at no additional charge in the Enterprise Support plan (and Enterprise On-Ramp). In Business Support, IEM is available only for an additional fee.",
+    "explanation_wrong": "Option B (Business Support) requires an additional fee for IEM. Options C (Developer) and D (Basic) do not include IEM.",
+    "reference_url": "https://aws.amazon.com/premiumsupport/plans/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 7,
+    "question_text": "Which AWS service can serve a static website?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon S3",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Amazon Route 53",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Amazon QuickSight",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS X-Ray",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "Amazon Simple Storage Service (Amazon S3) provides a static website hosting feature to serve HTML, CSS, JavaScript, client-side scripts, and images directly from an S3 bucket without managing any web servers.",
+    "explanation_wrong": "Option B (Amazon Route 53) routes DNS traffic to endpoints. Option C (Amazon QuickSight) is a business intelligence and visualization service. Option D (AWS X-Ray) is an application tracing tool.",
+    "reference_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 8,
+    "question_text": "How does AWS shorten the time to provision IT resources?",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "It automates all application code writing.",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "It provides pre-installed physical racks in customer offices.",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "It provides the ability to programmatically provision existing resources.",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "It eliminates the need for any infrastructure planning.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "AWS allows infrastructure to be provisioned programmatically on demand using APIs, SDKs, CLI, and Infrastructure as Code templates (like AWS CloudFormation), reducing provisioning time from months to minutes.",
+    "explanation_wrong": "Option A is false because writing code is the customer's responsibility. Option B is incorrect because AWS hosts infrastructure in AWS data centers. Option D is incorrect because architectural planning remains necessary.",
+    "reference_url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 9,
+    "question_text": "What can AWS edge locations be used for? (Select TWO.)",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hosting primary production relational databases",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Delivering content closer to users",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Running heavy backend batch jobs",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Reducing traffic on the server by caching responses",
+        "is_correct": true
+      },
+      {
+        "label": "E",
+        "text": "Replacing Amazon VPC subnets",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B",
+      "D"
+    ],
+    "explanation_correct": "AWS Edge Locations are Points of Presence used by Amazon CloudFront to deliver static and dynamic web content with lower latency by caching frequently requested content closer to global end users, reducing the load on origin servers.",
+    "explanation_wrong": "Option A (Primary databases) run in VPC subnets across Availability Zones. Option C (Batch jobs) run on compute services like AWS Batch or EC2 in Regions. Option E is incorrect because Edge Locations are independent of VPC subnets.",
+    "reference_url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 10,
+    "question_text": "Which of the following can limit Amazon Simple Storage Service (Amazon S3) bucket access to specific users?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Security Groups",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Network ACLs",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS Identity and Access Management (IAM) policies",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Amazon Inspector",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "AWS IAM policies (and S3 bucket policies) specify granular authorization rules to restrict Amazon S3 bucket and object access to specific IAM users, roles, or groups.",
+    "explanation_wrong": "Options A and B (Security Groups and Network ACLs) operate at the VPC network layer for EC2 instances and subnets, not at the S3 object API layer. Option D (Amazon Inspector) is a vulnerability scanning service.",
+    "reference_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 11,
+    "question_text": "A solution that is able to support growth in users, traffic, or data size without dropping performance demonstrates which cloud characteristic?",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Implement global footprint",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Implement elasticity",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Implement multi-tenancy",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Implement loose coupling",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "Elasticity (and scalability) is the ability of an architecture to dynamically acquire compute resources as traffic, users, or data volume grows and release them when demand subsides, maintaining consistent performance.",
+    "explanation_wrong": "Option A refers to deploying across multiple geographic locations. Option C describes shared infrastructure architecture. Option D describes minimizing interdependencies between components.",
+    "reference_url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 12,
+    "question_text": "Which of the following tasks is the responsibility of AWS?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Configuring Amazon VPC security groups",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Patching the guest operating system on Amazon EC2",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Securing the Amazon EC2 hypervisor",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Managing IAM user credentials",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "Under the AWS Shared Responsibility Model, AWS is responsible for security 'of' the cloud, which includes maintaining and securing the underlying physical virtualization hypervisor software on EC2 hosts.",
+    "explanation_wrong": "Options A, B, and D are customer responsibilities for security 'in' the cloud (configuring security groups, patching guest operating systems, and managing IAM user credentials).",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 13,
+    "question_text": "One benefit of On-Demand Amazon Elastic Compute Cloud (Amazon EC2) pricing is:",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "guaranteed capacity for 3 years.",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "the deepest discount available.",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "paying only for time used.",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "automatic bidding for unused compute capacity.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "With On-Demand Instances, you pay for compute capacity by the second or hour with no long-term commitments or upfront payments, paying only for the time instances are running.",
+    "explanation_wrong": "Option A describes Reserved Instances. Option B describes Spot Instances (up to 90% discount) or Reserved Instances. Option D describes the Spot pricing model.",
+    "reference_url": "https://aws.amazon.com/ec2/pricing/on-demand/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 14,
+    "question_text": "An administrator needs to rapidly deploy a popular IT solution on AWS using pre-packaged, production-ready CloudFormation templates. Which resource should be used?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "medium",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS CodeCommit",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "AWS Trusted Advisor",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS Config",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS Quick Start reference deployments",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "AWS Quick Starts (now AWS Solutions Library / AWS Solutions Constructs) are automated reference deployments built by AWS solutions architects and partners that use CloudFormation templates to rapidly deploy popular workloads following AWS best practices.",
+    "explanation_wrong": "Option A (AWS CodeCommit) is a Git code repository. Option B (AWS Trusted Advisor) provides optimization checks. Option C (AWS Config) monitors resource compliance.",
+    "reference_url": "https://aws.amazon.com/solutions/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 15,
+    "question_text": "Which of the following services is in the category of AWS serverless compute?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon EC2",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon Lightsail",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS Lambda",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "AWS Elastic Beanstalk",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "AWS Lambda is a serverless compute service that lets you run code without provisioning or managing servers, automatically executing code in response to events and charging only for the compute time consumed.",
+    "explanation_wrong": "Option A (Amazon EC2) requires provisioning virtual servers. Option B (Amazon Lightsail) provides virtual private servers. Option D (AWS Elastic Beanstalk) deploys applications onto managed EC2 instance infrastructure.",
+    "reference_url": "https://aws.amazon.com/lambda/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 16,
+    "question_text": "Which services are parts of the AWS serverless platform?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "medium",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon EC2, Amazon EBS, Amazon EFS",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon RDS, Amazon ElastiCache, Amazon Redshift",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS Step Functions, Amazon DynamoDB, Amazon SNS",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Amazon VPC, AWS Direct Connect, AWS Storage Gateway",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "AWS Step Functions (workflow orchestration), Amazon DynamoDB (NoSQL database), and Amazon SNS (pub/sub messaging) are core native serverless services where AWS manages all underlying capacity, scaling, and maintenance automatically.",
+    "explanation_wrong": "Option A contains infrastructure compute and block storage (EC2, EBS). Option B contains managed server-based database instances (standard RDS, ElastiCache, Redshift). Option D contains network and hybrid infrastructure services.",
+    "reference_url": "https://aws.amazon.com/serverless/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 17,
+    "question_text": "Under the shared responsibility model, which of the following is an example of a shared control?",
+    "domain": "Security & Compliance",
+    "difficulty": "medium",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Physical security of data centers",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Patch management",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Customer IAM credential rotation",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Environmental facility management",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "Patch management is a shared control under the Shared Responsibility Model: AWS is responsible for patching infrastructure, physical hosts, and hypervisors, while the customer is responsible for patching guest operating systems and application software.",
+    "explanation_wrong": "Options A and D are exclusive AWS responsibilities (physical and environmental security). Option C is an exclusive customer responsibility (managing IAM passwords and keys).",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 18,
+    "question_text": "What can AWS edge locations be used for? (Select TWO.)",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Running Amazon EC2 instances",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Delivering content closer to users",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Storing master relational databases",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Reducing traffic on the server by caching responses",
+        "is_correct": true
+      },
+      {
+        "label": "E",
+        "text": "Creating VPC subnets",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B",
+      "D"
+    ],
+    "explanation_correct": "AWS edge locations are globally distributed Points of Presence (PoPs) that deliver cached web assets closer to end users via Amazon CloudFront, significantly reducing latency and decreasing request load on origin servers.",
+    "explanation_wrong": "Option A is incorrect because EC2 instances run in Regions/AZs. Option C is incorrect because relational databases run inside VPCs. Option E is incorrect because subnets belong to Availability Zones within a VPC.",
+    "reference_url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 19,
+    "question_text": "What technology enables compute capacity to adjust as loads change?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS Direct Connect",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon CloudFront",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Amazon Route 53",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Auto Scaling",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "Amazon EC2 Auto Scaling monitors your applications and automatically adjusts compute capacity by adding or removing EC2 instances to maintain steady, predictable performance at the lowest possible cost.",
+    "explanation_wrong": "Option A (AWS Direct Connect) is a dedicated network connection. Option B (Amazon CloudFront) is a CDN service. Option C (Amazon Route 53) is a DNS service.",
+    "reference_url": "https://aws.amazon.com/ec2/autoscaling/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 20,
+    "question_text": "Which AWS services are defined as global instead of regional? (Select TWO.)",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Route 53",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Amazon EC2",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Amazon EBS",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Amazon CloudFront",
+        "is_correct": true
+      },
+      {
+        "label": "E",
+        "text": "Amazon DynamoDB",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "D"
+    ],
+    "explanation_correct": "Amazon Route 53 (DNS) and Amazon CloudFront (CDN) are global AWS services whose configuration and operations are distributed globally across all AWS Edge Locations and do not require specifying a regional scope.",
+    "explanation_wrong": "Option B (Amazon EC2) is a regional/AZ-scoped compute service. Option C (Amazon EBS) is an AZ-scoped block storage service. Option E (Amazon DynamoDB) tables are regional (unless configured as Global Tables).",
+    "reference_url": "https://aws.amazon.com/about-aws/global-infrastructure/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 21,
+    "question_text": "Which AWS service would you use to obtain compliance reports and certifications?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS Artifact",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "AWS Lambda",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Amazon Inspector",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS Certificate Manager",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "AWS Artifact is a self-service compliance portal that provides on-demand access to AWS security and compliance reports (such as SOC, PCI-DSS, ISO, FedRAMP) and compliance agreements (such as the BAA).",
+    "explanation_wrong": "Option B (AWS Lambda) is a serverless compute service. Option C (Amazon Inspector) scans EC2 and container images for software vulnerabilities. Option D (AWS Certificate Manager) manages SSL/TLS certificates.",
+    "reference_url": "https://aws.amazon.com/artifact/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 22,
+    "question_text": "Under the shared responsibility model, which of the following tasks are the customer's responsibility? (Select TWO.)",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Ensuring that application data is encrypted at rest",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Ensuring that AWS NTP servers are set to the correct time",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Ensuring that users have received security training in the use of AWS services",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Ensuring that access to data centers is restricted",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Ensuring that hardware is disposed of properly",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "C"
+    ],
+    "explanation_correct": "Customers are responsible for data encryption (at rest and in transit) and training their own employees on cloud security best practices and compliance procedures.",
+    "explanation_wrong": "Options B, D, and E (NTP infrastructure synchronization, physical data center access restriction, and secure hardware disposal) are managed entirely by AWS.",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 23,
+    "question_text": "Which AWS service can be used to manually launch instances based on resource requirements?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon EBS",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon S3",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Amazon EC2",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Amazon ECS",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "Amazon Elastic Compute Cloud (Amazon EC2) allows customers to manually launch virtual server instances choosing specific CPU, memory, storage, and networking configurations.",
+    "explanation_wrong": "Option A (Amazon EBS) provides block storage volumes. Option B (Amazon S3) is object storage. Option D (Amazon ECS) is a container orchestration service.",
+    "reference_url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 24,
+    "question_text": "A company is migrating an application that is running non-interruptible workloads for a 3-year period. Which EC2 pricing model provides the MOST cost savings?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon EC2 Spot Instances",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon EC2 Dedicated Instances",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Amazon EC2 On-Demand Instances",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Amazon EC2 Reserved Instances",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "Amazon EC2 Reserved Instances (or Savings Plans) provide significant discounts (up to 72%) compared to On-Demand rates in exchange for a committed 1- or 3-year term, making them ideal for predictable, steady-state, non-interruptible workloads.",
+    "explanation_wrong": "Option A (Spot Instances) can be reclaimed with a 2-minute warning and are unsuitable for non-interruptible workloads. Option B (Dedicated Instances) incurs dedicated hardware surcharges. Option C (On-Demand) is the most expensive model for continuous 3-year steady workloads.",
+    "reference_url": "https://aws.amazon.com/ec2/pricing/reserved-instances/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 25,
+    "question_text": "The financial benefits of using AWS are: (Select TWO.)",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "reduced Total Cost of Ownership (TCO).",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "increased capital expenditure (capex).",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "reduced operational expenditure (opex).",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "deferred payment plans for startups.",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "business credit lines for stratups.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "C"
+    ],
+    "explanation_correct": "Moving to AWS reduces Total Cost of Ownership (TCO) by trading heavy upfront CapEx for low variable OpEx and lowering overall operational expenses through economies of scale and managed services.",
+    "explanation_wrong": "Option B is incorrect because AWS decreases CapEx rather than increasing it. Options D and E describe banking/credit arrangements that are not native AWS financial benefits.",
+    "reference_url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 26,
+    "question_text": "Which of the following is entirely the responsibility of AWS, according to the AWS shared responsibility model?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Patching of the guest operating system",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Security awareness and training",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Physical and environmental controls",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Development of an IAM password policy",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "AWS is entirely responsible for physical and environmental security controls protecting AWS data centers, server hardware, power generators, cooling systems, and physical perimeter access.",
+    "explanation_wrong": "Option A (Guest OS patching) and Option D (IAM password policy) are customer responsibilities. Option B (Security awareness and training) is a shared control.",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 27,
+    "question_text": "Which AWS service allows companies to connect an Amazon VPC to an on-premises data center? (Select TWO.)",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS VPN",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Amazon Redshift",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "API Gateway",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS Direct Connect",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "D"
+    ],
+    "explanation_correct": "AWS Site-to-Site VPN establishes an encrypted IPsec tunnel over the public internet between on-premises routers and an AWS VPC. AWS Direct Connect establishes a dedicated, private physical network connection bypassing the internet.",
+    "explanation_wrong": "Option B (Amazon Redshift) is a data warehouse. Option C (Amazon API Gateway) is an API management service.",
+    "reference_url": "https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-vpn.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 28,
+    "question_text": "A company wants to reduce the physical compute footprint that developers manage to run code. Which service should they choose?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Elastic Compute Cloud (Amazon EC2)",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "AWS Lambda",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Amazon DynamoDB",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS CodeCommit",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "AWS Lambda is a serverless compute service that executes code in response to events and triggers without requiring developers to manage, provision, or patch physical or virtual server instances.",
+    "explanation_wrong": "Option A (Amazon EC2) requires provisioning and managing virtual server instances and operating systems. Option C (Amazon DynamoDB) is a database service. Option D (AWS CodeCommit) is a code version repository.",
+    "reference_url": "https://aws.amazon.com/lambda/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 29,
+    "question_text": "Which AWS service provides alerts when an AWS event may impact a company's specific AWS resources?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS Personal Health Dashboard",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "AWS Service Health Dashboard",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS Trusted Advisor",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS Infrastructure Event Management",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "AWS Personal Health Dashboard provides personalized alerts and guidance when AWS experiences events or planned maintenance that may affect your specific AWS account and resources.",
+    "explanation_wrong": "Option B (AWS Service Health Dashboard) displays the general status of AWS services globally for all users. Option C (AWS Trusted Advisor) provides optimization and best practice recommendations. Option D (AWS IEM) is a support service for major planned events.",
+    "reference_url": "https://aws.amazon.com/premiumsupport/technology/personal-health-dashboard/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 30,
+    "question_text": "Which of the following are categories of AWS Trusted Advisor checks? (Select TWO.)",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Fault Tolerance",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Instance Usage",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Infrastructure",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Performance",
+        "is_correct": true
+      },
+      {
+        "label": "E",
+        "text": "Storage Capacity",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "D"
+    ],
+    "explanation_correct": "The 5 core pillars of AWS Trusted Advisor checks are: 1. Cost Optimization, 2. Performance, 3. Security, 4. Fault Tolerance, and 5. Service Limits (Service Quotas).",
+    "explanation_wrong": "Options B, C, and E (Instance Usage, Infrastructure, Storage Capacity) are not official categories of AWS Trusted Advisor.",
+    "reference_url": "https://aws.amazon.com/premiumsupport/technology/trusted-advisor/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 31,
+    "question_text": "Which of the following services falls under the responsibility of the customer to manage guest OS patches?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon RDS",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon EC2",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Amazon ElastiCache",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS Fargate",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "Amazon EC2 is an IaaS compute service where the customer has full root/administrator access and is responsible for patching the guest operating system and installed software.",
+    "explanation_wrong": "Options A, C, and D (Amazon RDS, Amazon ElastiCache, AWS Fargate) are managed services where AWS automatically manages and patches the underlying operating system.",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 32,
+    "question_text": "A company will be moving from an on-premises data center to the AWS Cloud. What is the financial transformation that occurs?",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Moving from variable operational expense (opex) to upfront capital expense (capex).",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Moving from upfront capital expense (capex) to variable capital expense (capex).",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Moving from upfront capital expense (capex) to variable operational expense (opex).",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Elimination of upfront capital expense (capex) and elimination of variable operational expense (opex)",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "Migrating to the AWS Cloud allows companies to trade heavy upfront capital expenses (CapEx for physical servers, buildings, and cooling) for flexible, pay-as-you-go variable operational expenses (OpEx).",
+    "explanation_wrong": "Option A reverses the cloud financial model. Option B invents 'variable capex'. Option D is incorrect because cloud usage still incurs ongoing operational expenses.",
+    "reference_url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 33,
+    "question_text": "How should a customer forecast the future costs for running a new workload on AWS before launching it?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Aurora Backtrack",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon CloudWatch Billing Alarms",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "AWS Simple Monthly Calculator",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "AWS Cost and Usage report",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C"
+    ],
+    "explanation_correct": "The AWS Pricing Calculator (and AWS Simple Monthly Calculator) allows customers to model architecture scenarios and estimate upfront and monthly costs for new workloads before provisioning them.",
+    "explanation_wrong": "Option A (Aurora Backtrack) rewinds database state. Option B (Billing Alarms) alert when actual accrued spending crosses a threshold. Option D (CUR) provides retrospective historical cost details.",
+    "reference_url": "https://calculator.aws/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 34,
+    "question_text": "Which is the MINIMUM AWS Support plan that provides technical support via 24/7 phone, chat, and email?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Enterprise",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Business",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Developer",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Basic",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "AWS Business Support is the minimum tier providing 24/7 access to Cloud Support Engineers via phone, live chat, and email for unlimited cases.",
+    "explanation_wrong": "Option A (Enterprise) includes 24/7 phone/chat/email plus TAM access, but Business is the minimum tier. Option C (Developer) offers business-hours email-only support. Option D (Basic) provides no technical case support.",
+    "reference_url": "https://aws.amazon.com/premiumsupport/plans/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 35,
+    "question_text": "According to the AWS shared responsibility model, what is the sole responsibility of AWS?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Application security",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Edge location management",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Patch management",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Client-side data",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "Managing, maintaining, and physically securing AWS global Edge Locations, Points of Presence, and CloudFront infrastructure is solely the responsibility of AWS.",
+    "explanation_wrong": "Option A (Application security) and Option D (Client-side data) are customer responsibilities. Option C (Patch management) is a shared responsibility.",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 36,
+    "question_text": "Which AWS IAM feature is used to associate a set of permissions with multiple users simultaneously?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Multi-factor authentication",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Groups",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Password policies",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Access keys",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "An IAM User Group is a collection of IAM users. You can attach IAM policies to a group to automatically grant the same permissions to all users within that group.",
+    "explanation_wrong": "Option A (MFA) adds authentication security. Option C (Password policies) defines complexity rules. Option D (Access keys) are programmatic credentials.",
+    "reference_url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 37,
+    "question_text": "Which of the following are benefits of the AWS Cloud? (Choose two.)",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Unlimited uptime",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Elasticity",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Agility",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Colocation",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Capital expenses",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B",
+      "C"
+    ],
+    "explanation_correct": "Elasticity (dynamically scaling resources to match load) and Agility (rapidly innovating and deploying resources in minutes) are two fundamental advantages of AWS Cloud computing.",
+    "explanation_wrong": "Option A (100% unlimited uptime) is not guaranteed by any cloud provider. Option D (Colocation) is an on-premises data center leasing model. Option E (Capital expenses) is what the cloud replaces with operational expenses.",
+    "reference_url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 38,
+    "question_text": "Which of the following can a customer use to enable single sign-on (SSO) integration with an on-premises Microsoft Active Directory?",
+    "domain": "Security & Compliance",
+    "difficulty": "medium",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Connect",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "AWS Directory Service",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Amazon Pinpoint",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Amazon Rekognition",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "AWS Directory Service (such as AWS Managed Microsoft AD or AD Connector) enables seamless integration and single sign-on (SSO) with existing on-premises Microsoft Active Directory environments.",
+    "explanation_wrong": "Option A (Amazon Connect) is an omnichannel cloud contact center. Option C (Amazon Pinpoint) is a customer engagement and push messaging service. Option D (Amazon Rekognition) is an image/video AI analysis service.",
+    "reference_url": "https://aws.amazon.com/directoryservice/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 39,
+    "question_text": "What are the multiple, isolated locations within an AWS Region that are connected through low-latency links?",
+    "domain": "Cloud Technology & Service",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS Direct Connects",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Amazon VPCs",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Edge locations",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Availability Zones",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "Availability Zones (AZs) are isolated locations within each AWS Region, each consisting of one or more discrete data centers with redundant power, networking, and low-latency interconnects.",
+    "explanation_wrong": "Option A (Direct Connect) provides dedicated hybrid networking. Option B (Amazon VPC) is a logical virtual network in the cloud. Option C (Edge locations) are CDN caching nodes.",
+    "reference_url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 40,
+    "question_text": "Which of the following benefits does the AWS Compliance program provide to AWS customers? (Choose two.)",
+    "domain": "Security & Compliance",
+    "difficulty": "medium",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "It verifies that hosted workloads are automatically compliant with the controls of supported compliance frameworks.",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "AWS is responsible for the maintenance of common compliance framework documentation.",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "It assures customers that AWS is maintaining physical security and data protection.",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "It ensures the use of compliance frameworks that are being used by other cloud providers.",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "It will adopt new compliance frameworks as they become relevant to customer workloads.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B",
+      "C"
+    ],
+    "explanation_correct": "The AWS Compliance program provides third-party audit reports (via AWS Artifact) assuring customers that AWS maintains physical and infrastructure security controls (Option C), and AWS maintains official documentation and certifications for common compliance frameworks like SOC, ISO, and PCI-DSS (Option B).",
+    "explanation_wrong": "Option A is false because hosted customer applications are not automatically compliant (compliance in the cloud is customer responsibility under the Shared Responsibility Model). Option D is incorrect because compliance frameworks are industry/regulatory standards, not defined by cloud providers.",
+    "reference_url": "https://aws.amazon.com/compliance/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 41,
+    "question_text": "Which of the following services provides on-demand access to AWS compliance documentation and agreements?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS IAM",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "AWS Artifact",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Amazon GuardDuty",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "AWS KMS",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B"
+    ],
+    "explanation_correct": "AWS Artifact is a self-service audit and compliance portal providing on-demand downloads of AWS security and compliance reports (SOC, PCI-DSS, ISO, FedRAMP) and legal agreements (BAA).",
+    "explanation_wrong": "Option A (AWS IAM) manages identity and permissions. Option C (Amazon GuardDuty) is an intelligent threat detection service. Option D (AWS KMS) manages cryptographic encryption keys.",
+    "reference_url": "https://aws.amazon.com/artifact/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 42,
+    "question_text": "As part of the AWS shared responsibility model, which of the following is the customer's responsibility?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Security management of data center",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Patch management of hypervisors",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Configuration management of infrastructure devices",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "User and access management",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "Managing users, access credentials, IAM policies, and role permissions is strictly the customer's responsibility for security 'in' the cloud.",
+    "explanation_wrong": "Options A, B, and C (physical data center security, hypervisor patching, and physical network infrastructure configuration) are managed entirely by AWS.",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 43,
+    "question_text": "When comparing AWS Cloud with on-premises Total Cost of Ownership, which costs are eliminated by moving to AWS? (Select TWO.)",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Software development",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Project management",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Storage hardware",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Physical servers",
+        "is_correct": true
+      },
+      {
+        "label": "E",
+        "text": "Antivirus software license",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "C",
+      "D"
+    ],
+    "explanation_correct": "Moving to the AWS Cloud eliminates the capital expense of purchasing, racking, maintaining, and replacing physical servers and storage hardware (SAN/NAS).",
+    "explanation_wrong": "Options A, B, and E (Software development, project management, and guest OS antivirus licensing) remain operational requirements for the customer in both environments.",
+    "reference_url": "https://aws.amazon.com/tco-calculator/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 44,
+    "question_text": "Under the shared responsibility model, which of the following tasks are the customer's responsibility? (Select TWO.)",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Maintaining the underlying Amazon EC2 hardware.",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Managing the VPC network access control lists.",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Encrypting data in transit and at rest.",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Replacing failed hard disk drives.",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Deploying hardware in different Availability Zones.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B",
+      "C"
+    ],
+    "explanation_correct": "Configuring network security rules (such as VPC Network Access Control Lists - NACLs and Security Groups) and encrypting data at rest and in transit are customer responsibilities under the Shared Responsibility Model.",
+    "explanation_wrong": "Options A, D, and E (maintaining physical host hardware, replacing failed disk drives, and physical data center hardware deployment across AZs) are entirely AWS responsibilities.",
+    "reference_url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 45,
+    "question_text": "Which scenarios represent the concept of elasticity on AWS? (Choose two.)",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Scaling the number of Amazon EC2 instances based on traffic.",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Resizing Amazon RDS instances as business needs change.",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Automatically directing traffic to less-utilized Amazon EC2 instances.",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Using AWS compliance documents to accelerate the compliance process.",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Having the ability to create and govern environments using code.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A",
+      "B"
+    ],
+    "explanation_correct": "Elasticity is the ability to dynamically scale compute capacity up/out or down/in to match demand, such as Auto Scaling EC2 instances based on traffic metrics or adjusting RDS instance classes as database workloads grow.",
+    "explanation_wrong": "Option C describes load balancing. Option D describes compliance management with AWS Artifact. Option E describes Infrastructure as Code (AWS CloudFormation).",
+    "reference_url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 46,
+    "question_text": "When is it beneficial for a company to use a Spot Instance?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "When there is flexibility in when an application needs to run.",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "When there are mission-critical workloads.",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "When dedicated capacity is needed.",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "When an instance should not be stopped.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "Spot Instances offer massive discounts (up to 90%) on spare EC2 capacity, making them ideal when start and end times are flexible and workloads can tolerate interruptions.",
+    "explanation_wrong": "Options B and D require On-Demand or Reserved Instances because Spot Instances can be terminated when AWS needs the capacity back. Option C requires Dedicated Hosts or Dedicated Instances.",
+    "reference_url": "https://aws.amazon.com/ec2/spot/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 47,
+    "question_text": "A company is considering moving its on-premises data center to AWS. Which of the following on-premises costs will be eliminated? (Select TWO.)",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "multi",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon EC2 instance availability",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Power consumption of the data center",
+        "is_correct": true
+      },
+      {
+        "label": "C",
+        "text": "Labor costs to replace old servers",
+        "is_correct": true
+      },
+      {
+        "label": "D",
+        "text": "Application developer time",
+        "is_correct": false
+      },
+      {
+        "label": "E",
+        "text": "Database engine capacity",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "B",
+      "C"
+    ],
+    "explanation_correct": "Migrating to AWS eliminates direct facilities expenses like data center electric power consumption and cooling, as well as physical hardware labor costs associated with repairing and replacing failed servers.",
+    "explanation_wrong": "Option A is a cloud operational metric. Option D (Application developer time) remains an ongoing requirement. Option E is managed in the cloud via RDS/Aurora/DynamoDB.",
+    "reference_url": "https://aws.amazon.com/tco-calculator/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 48,
+    "question_text": "How does AWS charge for AWS Lambda?",
+    "domain": "Billing, Pricing & Support",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Users bid on the maximum price they are willing to pay per hour.",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Users choose a 1-, 3- or 5-year upfront payment term.",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Users pay for the required permanent storage on a file system or in a database.",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Users pay based on the number of requests and consumed compute resources.",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "AWS Lambda charges based on the number of requests for your functions and the duration (execution time in milliseconds) multiplied by the memory allocated to your function.",
+    "explanation_wrong": "Option A describes Spot Instances. Option B describes Reserved Instances. Option C describes storage services like Amazon EBS or RDS.",
+    "reference_url": "https://aws.amazon.com/lambda/pricing/"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 49,
+    "question_text": "What function do security groups serve related to Amazon Elastic Compute Cloud (Amazon EC2)?",
+    "domain": "Security & Compliance",
+    "difficulty": "easy",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Act as a virtual firewall for the Amazon EC2 instance.",
+        "is_correct": true
+      },
+      {
+        "label": "B",
+        "text": "Secure AWS user accounts with AWS identity and Access Management (IAM) policies.",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Provide DDoS protection with AWS Shield.",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Use Amazon CloudFront to protect the Amazon EC2 instance.",
+        "is_correct": false
+      }
+    ],
+    "correct_letters": [
+      "A"
+    ],
+    "explanation_correct": "Security groups act as a virtual firewall for your Amazon EC2 instances to control inbound and outbound network traffic at the instance/elastic network interface (ENI) level.",
+    "explanation_wrong": "Option B describes IAM policies for user identities. Option C describes AWS Shield for DDoS mitigation. Option D describes Amazon CloudFront as a CDN.",
+    "reference_url": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"
+  },
+  {
+    "source_exam": 15,
+    "source_num": 50,
+    "question_text": "Which disaster recovery scenario offers the lowest probability of downtime and near-zero recovery time (RTO/RPO)?",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "q_type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Backup and restore",
+        "is_correct": false
+      },
+      {
+        "label": "B",
+        "text": "Pilot light",
+        "is_correct": false
+      },
+      {
+        "label": "C",
+        "text": "Warm standby",
+        "is_correct": false
+      },
+      {
+        "label": "D",
+        "text": "Multi-site active-active",
+        "is_correct": true
+      }
+    ],
+    "correct_letters": [
+      "D"
+    ],
+    "explanation_correct": "A Multi-site Active-Active disaster recovery strategy runs workloads simultaneously in multiple AWS Regions or Availability Zones, serving traffic concurrently and providing near-zero Recovery Time Objective (RTO) and Recovery Point Objective (RPO).",
+    "explanation_wrong": "Option A (Backup and restore) has the highest RTO/RPO (hours to days). Option B (Pilot light) maintains core data synchronization but spins up compute only after a disaster (minutes to hours). Option C (Warm standby) runs a scaled-down environment in standby.",
+    "reference_url": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"
+  }
+]
